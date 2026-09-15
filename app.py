@@ -1,4 +1,5 @@
 import streamlit as st
+from prediction import get_prediction
 
 # ---------------- PAGE ---------------- #
 st.set_page_config(
@@ -24,69 +25,43 @@ current_temp = st.number_input(
     value=-2.0
 )
 
-safe_temp = st.number_input(
-    "Safe Temperature (°C)",
-    value=-20.0
-)
-
-max_temp_threshold = st.number_input(
-    "Maximum Temperature Threshold (°C)",
-    value=5.0
-)
-
 flight_delay_minutes = st.number_input(
     "Flight Delay (Minutes)",
     min_value=0,
     value=120
 )
 
-viability_percentage = st.slider(
-    "Biological Viability (%)",
-    min_value=0,
-    max_value=100,
-    value=94
+# ---------------- CALL BACKEND ---------------- #
+result = get_prediction(
+    cargo_type=cargo_type,
+    current_temp=current_temp,
+    flight_delay_minutes=flight_delay_minutes
 )
 
-decay_rate = st.number_input(
-    "Decay Rate",
-    value=0.05
-)
-
-time_remaining_hours = st.number_input(
-    "Remaining Safe Time (Hours)",
-    value=4.0
-)
-
-risk_level = st.selectbox(
-    "Risk Level",
-    ["Safe", "Warning", "Critical"]
-)
+# Values returned by prediction.py
+viability_percentage = result["viability_percentage"]
+risk_level = result["risk_level"]
 
 # ---------------- DASHBOARD ---------------- #
 st.markdown("---")
 st.subheader("Cargo Status")
 
 st.metric("Viability", f"{viability_percentage}%")
-st.metric("Remaining Safe Time", f"{time_remaining_hours} hrs")
 st.metric("Flight Delay", f"{flight_delay_minutes} min")
+st.metric("Risk Level", risk_level)
 
+# ---------------- DETAILS ---------------- #
 st.markdown("---")
 st.subheader("Cargo Details")
 
 st.write(f"**Cargo ID:** {cargo_id}")
 st.write(f"**Cargo Type:** {cargo_type}")
 st.write(f"**Current Temperature:** {current_temp}°C")
-st.write(f"**Safe Temperature:** {safe_temp}°C")
-st.write(f"**Maximum Threshold:** {max_temp_threshold}°C")
-st.write(f"**Decay Rate:** {decay_rate}")
-st.write(f"**Risk Level:** {risk_level}")
 
 # ---------------- ALERT ---------------- #
 if risk_level == "Safe":
     st.success("Cargo is within safe operating conditions.")
-
 elif risk_level == "Warning":
     st.warning("Cargo requires close monitoring.")
-
 else:
     st.error("Critical: Immediate intervention required.")
