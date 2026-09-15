@@ -1,25 +1,60 @@
-/* Background */
+/* ---------------- GLOBAL ---------------- */
+
 .stApp{
-    background:linear-gradient(135deg,#020B22,#081E3F,#020B22);
+    background: linear-gradient(135deg,#020B22,#081E3F,#031126);
     color:white;
 }
 
 .main .block-container{
     max-width:1200px;
     padding-top:25px;
+    padding-bottom:25px;
 }
 
-/* Hero */
+/* ---------------- TEXT ---------------- */
+
+h1,h2,h3{
+    color:white !important;
+}
+
+.hero h1{
+    color:white !important;
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#D7E7F7 !important;
+    font-size:18px;
+}
+
+/* Make all input labels white */
+label,
+.stTextInput label,
+.stNumberInput label,
+.stSelectbox label{
+    color:white !important;
+    font-weight:600;
+}
+
+div[data-testid="stWidgetLabel"],
+div[data-testid="stWidgetLabel"] label{
+    color:white !important;
+}
+
+/* ---------------- HERO ---------------- */
 
 .hero{
     background:linear-gradient(135deg,#102749,#173E6A);
     border-radius:24px;
     padding:30px;
+    border:1px solid rgba(255,255,255,.08);
     box-shadow:0 10px 40px rgba(0,0,0,.35);
     margin-bottom:25px;
 }
 
-/* Cards */
+/* ---------------- CARDS ---------------- */
 
 .card{
     background:rgba(15,35,65,.95);
@@ -32,6 +67,7 @@
 .metric-title{
     color:#9EC3E7;
     font-size:14px;
+    margin-bottom:8px;
 }
 
 .metric-value{
@@ -40,37 +76,45 @@
     font-weight:bold;
 }
 
-/* Badges */
+/* ---------------- STATUS ---------------- */
 
 .safe{
-background:#00DC8C;
-padding:8px 18px;
-border-radius:30px;
-color:black;
-font-weight:bold;
+    background:#00DC8C;
+    color:black;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:bold;
+    display:inline-block;
 }
 
 .warning{
-background:#F4C542;
-padding:8px 18px;
-border-radius:30px;
-color:black;
-font-weight:bold;
+    background:#F4C542;
+    color:black;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:bold;
+    display:inline-block;
 }
 
 .critical{
-background:#FF4D4D;
-padding:8px 18px;
-border-radius:30px;
-color:white;
-font-weight:bold;
+    background:#FF4D4D;
+    color:white;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:bold;
+    display:inline-block;
 }
 
-/* Inputs */
+/* ---------------- INPUTS ---------------- */
 
 div[data-baseweb="select"],
 div[data-testid="stNumberInput"],
 div[data-testid="stTextInput"]{
-background:#102749;
-border-radius:12px;
+    border-radius:12px;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer{
+    visibility:hidden;
 }
