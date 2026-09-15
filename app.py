@@ -1,223 +1,406 @@
-import streamlit as st
-from prediction import get_prediction
-from streamlit_echarts import st_echarts
-import matplotlib.pyplot as plt
-import numpy as np
+from flask import Flask, request, jsonify
 
-# ---------------- PAGE CONFIG ---------------- #
-st.set_page_config(
-    page_title="BioCargo Tracker",
-    page_icon="🧬",
-    layout="wide"
+from database import (
+    add_cargo,
+    get_all_cargo,
+    get_cargo,
+    update_cargo,
+    delete_cargo
 )
 
-# ---------------- LOAD CSS ---------------- #
-with open("styles.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+from models import Cargo
 
-# ---------------- HERO ---------------- #
-st.markdown("""
-<div class="hero">
-    <h1>🧬 Synthetic Biology Cargo Viability Tracker</h1>
-    <p>Real-time monitoring of temperature-sensitive biological shipments during flight delays.</p>
-</div>
-""", unsafe_allow_html=True)
 
-# ---------------- INPUT SECTION ---------------- #
-st.markdown("## Cargo Input")
+# =========================================================
+# CREATE FLASK APPLICATION
+# =========================================================
+app = Flask(__name__)
 
-left, right = st.columns(2)
 
-with left:
-    cargo_id = st.text_input("Cargo ID", "ORG-101")
+# =========================================================
+# CONVERT CARGO OBJECT TO JSON
+# =========================================================
+def cargo_to_dict(cargo):
 
-    cargo_type = st.selectbox(
-        "Cargo Type",
-        [
-            "Solid Organs",
-            "Platelets",
-            "Red Blood Cells",
-            "Plasma & Cryo",
-            "Skin, Bones, Valves"
-        ]
-    )
-
-with right:
-    current_temp = st.number_input(
-        "Current Temperature (°C)",
-        value=5.0,
-        step=1.0
-    )
-
-    flight_delay_minutes = st.number_input(
-        "Flight Delay (Minutes)",
-        min_value=0,
-        value=120,
-        step=10
-    )
-
-    flight_duration_hours = st.number_input(
-        "Flight Duration (Hours)",
-        min_value=0.5,
-        value=2.0,
-        step=0.5
-    )
-
-# ---------------- BACKEND PREDICTION ---------------- #
-try:
-    result = get_prediction(
-        cargo_type=cargo_type,
-        current_temp=current_temp,
-        flight_delay_minutes=flight_delay_minutes,
-        flight_duration_hours=flight_duration_hours
-    )
-
-    # Compatible with different backend key names
-    viability = (
-        result.get("viability_percentage")
-        or result.get("viability")
-        or result.get("biological_viability")
-        or 0
-    )
-
-    risk = (
-        result.get("risk_level")
-        or result.get("risk")
-        or "Unknown"
-    )
-
-except Exception as e:
-    st.error(f"Backend Error: {e}")
-    st.stop()
-
-# ---------------- STATUS CARDS ---------------- #
-st.markdown("---")
-st.markdown("## Live Cargo Status")
-
-c1, c2, c3, c4 = st.columns(4)
-
-with c1:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">VIABILITY</div>
-        <div class="metric-value">{viability}%</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c2:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">DELAY</div>
-        <div class="metric-value">{flight_delay_minutes} min</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c3:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">DURATION</div>
-        <div class="metric-value">{flight_duration_hours} hr</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c4:
-    badge = "safe"
-
-    if str(risk).lower() == "warning":
-        badge = "warning"
-    elif str(risk).lower() in ["critical", "high", "high/critical"]:
-        badge = "critical"
-
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">RISK LEVEL</div>
-        <div class="{badge}">{risk}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ---------------- GAUGE & COUNTDOWN ---------------- #
-st.markdown("---")
-
-left, right = st.columns([2, 1])
-
-with left:
-    st.markdown("### Biological Viability")
-
-    option = {
-        "series": [{
-            "type": "gauge",
-            "progress": {"show": True},
-            "axisLine": {"lineStyle": {"width": 18}},
-            "detail": {"formatter": "{value}%", "fontSize": 28},
-            "data": [{"value": viability}]
-        }]
+    return {
+        "cargo_id": cargo.cargo_id,
+        "cargo_type": cargo.cargo_type,
+        "current_temp": cargo.current_temp,
+        "safe_temp": cargo.safe_temp,
+        "max_temp_threshold": cargo.max_temp_threshold,
+        "flight_delay_minutes": cargo.flight_delay_minutes,
+        "viability_percentage": cargo.viability_percentage,
+        "risk_level": cargo.risk_level,
+        "flight_duration_hours": cargo.flight_duration_hours
     }
 
-    st_echarts(option, height="320px")
 
-with right:
-    st.markdown("### Estimated Safe Time")
+# =========================================================
+# HOME
+# =========================================================
+@app.route("/", methods=["GET"])
+def home():
 
-    hours = max(0, (100 - int(viability)) // 10 + 1)
+    return jsonify({
+        "success": True,
+        "message": "Synthetic Cargo Tracker Backend is running!"
+    })
 
-    st.markdown(f"""
-    <div class="card" style="text-align:center;">
-        <h1>{hours}:00:00</h1>
-        <p>Remaining Safe Window</p>
-    </div>
-    """, unsafe_allow_html=True)
 
-# ---------------- TEMPERATURE TREND ---------------- #
-st.markdown("---")
+# =========================================================
+# GET ALL CARGO
+# =========================================================
+@app.route("/cargo", methods=["GET"])
+def get_cargo_list():
 
-left, right = st.columns(2)
+    cargo_list = get_all_cargo()
 
-with left:
-    st.markdown("### Temperature Trend")
+    result = []
 
-    temps = np.linspace(current_temp, current_temp + 4, 6)
+    for cargo in cargo_list:
 
-    fig, ax = plt.subplots(figsize=(5, 3))
-    ax.plot(range(6), temps, marker="o", linewidth=3)
-    ax.set_facecolor("#0F2341")
-    fig.patch.set_facecolor("#0F2341")
-    ax.tick_params(colors="white")
-    ax.spines[:].set_color("white")
-    ax.set_ylabel("Temperature (°C)", color="white")
-    ax.set_xlabel("Time", color="white")
+        result.append(
+            cargo_to_dict(cargo)
+        )
 
-    st.pyplot(fig)
+    return jsonify({
+        "success": True,
+        "count": len(result),
+        "data": result
+    })
 
-with right:
-    st.markdown("### Cargo Details")
 
-    st.markdown(f"""
-    <div class="card">
+# =========================================================
+# GET ONE CARGO
+# =========================================================
+@app.route("/cargo/<cargo_id>", methods=["GET"])
+def get_single_cargo(cargo_id):
 
-    **Cargo ID:** {cargo_id}
+    cargo = get_cargo(cargo_id)
 
-    **Cargo Type:** {cargo_type}
+    if cargo is None:
 
-    **Current Temperature:** {current_temp}°C
+        return jsonify({
+            "success": False,
+            "error": "Cargo ID not found."
+        }), 404
 
-    **Flight Delay:** {flight_delay_minutes} minutes
+    return jsonify({
+        "success": True,
+        "data": cargo_to_dict(cargo)
+    })
 
-    **Flight Duration:** {flight_duration_hours} hours
 
-    </div>
-    """, unsafe_allow_html=True)
+# =========================================================
+# ADD NEW CARGO
+# =========================================================
+@app.route("/cargo", methods=["POST"])
+def create_cargo():
 
-# ---------------- OPERATIONAL STATUS ---------------- #
-st.markdown("---")
-st.markdown("### Operational Status")
+    data = request.get_json(silent=True)
 
-if str(risk).lower() == "safe":
-    st.success("🟢 Cargo is within safe operating conditions.")
-elif str(risk).lower() == "warning":
-    st.warning("🟡 Cargo requires close monitoring.")
-else:
-    st.error("🔴 Immediate intervention required.")
+    if data is None:
 
-# ---------------- FOOTER ---------------- #
-st.markdown("---")
-st.caption("BioCargo • AI-powered Cold Chain Monitoring • VMEDITHON 3.0")
+        return jsonify({
+            "success": False,
+            "error": "Request must contain JSON data."
+        }), 400
+
+    required_fields = [
+        "cargo_id",
+        "cargo_type",
+        "current_temp",
+        "safe_temp",
+        "max_temp_threshold",
+        "flight_delay_minutes",
+        "flight_duration_hours"
+    ]
+
+    for field in required_fields:
+
+        if field not in data:
+
+            return jsonify({
+                "success": False,
+                "error": f"Missing required field: {field}"
+            }), 400
+
+    cargo_id = str(
+        data["cargo_id"]
+    ).strip()
+
+    cargo_type = str(
+        data["cargo_type"]
+    ).strip()
+
+    if cargo_id == "":
+
+        return jsonify({
+            "success": False,
+            "error": "Cargo ID cannot be empty."
+        }), 400
+
+    if cargo_type == "":
+
+        return jsonify({
+            "success": False,
+            "error": "Cargo type cannot be empty."
+        }), 400
+
+    # -----------------------------------------------------
+    # NUMBER VALIDATION
+    # -----------------------------------------------------
+    try:
+
+        current_temp = float(
+            data["current_temp"]
+        )
+
+        safe_temp = float(
+            data["safe_temp"]
+        )
+
+        max_temp_threshold = float(
+            data["max_temp_threshold"]
+        )
+
+        flight_delay_minutes = int(
+            data["flight_delay_minutes"]
+        )
+
+        flight_duration_hours = float(
+            data["flight_duration_hours"]
+        )
+
+    except (ValueError, TypeError):
+
+        return jsonify({
+            "success": False,
+            "error": "Invalid numeric value provided."
+        }), 400
+
+    # -----------------------------------------------------
+    # TEMPERATURE VALIDATION
+    # -----------------------------------------------------
+    if current_temp < -100 or current_temp > 100:
+
+        return jsonify({
+            "success": False,
+            "error": "Current temperature is outside the accepted range."
+        }), 400
+
+    if safe_temp < -100 or safe_temp > 100:
+
+        return jsonify({
+            "success": False,
+            "error": "Safe temperature is outside the accepted range."
+        }), 400
+
+    if max_temp_threshold < -100 or max_temp_threshold > 100:
+
+        return jsonify({
+            "success": False,
+            "error": "Maximum temperature threshold is outside the accepted range."
+        }), 400
+
+    if max_temp_threshold < safe_temp:
+
+        return jsonify({
+            "success": False,
+            "error": "Maximum temperature threshold cannot be lower than safe temperature."
+        }), 400
+
+    # -----------------------------------------------------
+    # DELAY VALIDATION
+    # -----------------------------------------------------
+    if flight_delay_minutes < 0:
+
+        return jsonify({
+            "success": False,
+            "error": "Flight delay cannot be negative."
+        }), 400
+
+    # -----------------------------------------------------
+    # FLIGHT DURATION VALIDATION
+    # -----------------------------------------------------
+    if flight_duration_hours <= 0:
+
+        return jsonify({
+            "success": False,
+            "error": "Flight duration must be greater than 0."
+        }), 400
+
+    # -----------------------------------------------------
+    # DUPLICATE CHECK
+    # -----------------------------------------------------
+    if get_cargo(cargo_id) is not None:
+
+        return jsonify({
+            "success": False,
+            "error": "Cargo ID already exists."
+        }), 409
+
+    # Initial values
+    viability_percentage = 100.0
+    risk_level = "Safe"
+
+    cargo = Cargo(
+        cargo_id,
+        cargo_type,
+        current_temp,
+        safe_temp,
+        max_temp_threshold,
+        flight_delay_minutes,
+        viability_percentage,
+        risk_level,
+        flight_duration_hours
+    )
+
+    if not add_cargo(cargo):
+
+        return jsonify({
+            "success": False,
+            "error": "Failed to save cargo to database."
+        }), 500
+
+    return jsonify({
+        "success": True,
+        "message": "Cargo added successfully.",
+        "data": cargo_to_dict(cargo)
+    }), 201
+
+
+# =========================================================
+# UPDATE CARGO
+# =========================================================
+@app.route("/cargo/<cargo_id>", methods=["PUT"])
+def update_single_cargo(cargo_id):
+
+    existing_cargo = get_cargo(cargo_id)
+
+    if existing_cargo is None:
+
+        return jsonify({
+            "success": False,
+            "error": "Cargo ID not found."
+        }), 404
+
+    data = request.get_json(silent=True)
+
+    if data is None:
+
+        return jsonify({
+            "success": False,
+            "error": "Request must contain JSON data."
+        }), 400
+
+    if "current_temp" not in data:
+
+        return jsonify({
+            "success": False,
+            "error": "Missing required field: current_temp"
+        }), 400
+
+    if "flight_delay_minutes" not in data:
+
+        return jsonify({
+            "success": False,
+            "error": "Missing required field: flight_delay_minutes"
+        }), 400
+
+    try:
+
+        current_temp = float(
+            data["current_temp"]
+        )
+
+        flight_delay_minutes = int(
+            data["flight_delay_minutes"]
+        )
+
+    except (ValueError, TypeError):
+
+        return jsonify({
+            "success": False,
+            "error": "Invalid update values."
+        }), 400
+
+    if current_temp < -100 or current_temp > 100:
+
+        return jsonify({
+            "success": False,
+            "error": "Current temperature is outside the accepted range."
+        }), 400
+
+    if flight_delay_minutes < 0:
+
+        return jsonify({
+            "success": False,
+            "error": "Flight delay cannot be negative."
+        }), 400
+
+    if not update_cargo(
+        cargo_id,
+        current_temp,
+        flight_delay_minutes
+    ):
+
+        return jsonify({
+            "success": False,
+            "error": "Failed to update cargo."
+        }), 500
+
+    updated_cargo = get_cargo(cargo_id)
+
+    return jsonify({
+        "success": True,
+        "message": "Cargo updated successfully.",
+        "data": cargo_to_dict(updated_cargo)
+    })
+
+
+# =========================================================
+# DELETE CARGO
+# =========================================================
+@app.route("/cargo/<cargo_id>", methods=["DELETE"])
+def delete_single_cargo(cargo_id):
+
+    existing_cargo = get_cargo(cargo_id)
+
+    if existing_cargo is None:
+
+        return jsonify({
+            "success": False,
+            "error": "Cargo ID not found."
+        }), 404
+
+    if not delete_cargo(cargo_id):
+
+        return jsonify({
+            "success": False,
+            "error": "Failed to delete cargo."
+        }), 500
+
+    return jsonify({
+        "success": True,
+        "message": "Cargo deleted successfully."
+    })
+
+
+# =========================================================
+# RUN FLASK SERVER
+# =========================================================
+if __name__ == "__main__":
+
+    print("\n========================================")
+    print("   SYNTHETIC CARGO TRACKER BACKEND")
+    print("========================================")
+    print("Server running at:")
+    print("http://127.0.0.1:5000")
+    print("========================================\n")
+
+    app.run(
+        host="127.0.0.1",
+        port=5000,
+        debug=True
+    )
