@@ -1,0 +1,901 @@
+cargo_type,current_temp,safe_temp,max_temp_threshold,flight_delay_minutes,viability_percentage
+Solid Organs,10.09,5,8,559,75.96
+Solid Organs,6.18,5,8,416,85.9
+Solid Organs,4.6,5,8,943,73.73
+Solid Organs,5.52,5,8,647,79.89
+Solid Organs,7.26,5,8,922,69.37
+Solid Organs,3.36,5,8,277,92.2
+Solid Organs,10.93,5,8,1235,52.4
+Solid Organs,7.66,5,8,1078,64.35
+Solid Organs,9.76,5,8,365,83.94
+Solid Organs,5.66,5,8,284,90.52
+Solid Organs,5.33,5,8,803,75.99
+Solid Organs,9.71,5,8,159,92.68
+Solid Organs,5.89,5,8,488,84.01
+Solid Organs,7.67,5,8,329,87.4
+Solid Organs,4.25,5,8,1262,67.24
+Solid Organs,5.63,5,8,235,92.1
+Solid Organs,7.2,5,8,1294,59.99
+Solid Organs,3.88,5,8,405,88.37
+Solid Organs,11.44,5,8,14,99.24
+Solid Organs,3.71,5,8,989,74.23
+Solid Organs,3.28,5,8,430,88.22
+Solid Organs,4.58,5,8,791,77.48
+Solid Organs,5.19,5,8,78,97.4
+Solid Organs,6.24,5,8,672,78.15
+Solid Organs,4.52,5,8,945,73.83
+Solid Organs,6.33,5,8,464,84.25
+Solid Organs,3.12,5,8,994,75.13
+Solid Organs,7.92,5,8,1297,58.21
+Solid Organs,7.55,5,8,186,92.73
+Solid Organs,11.01,5,8,1100,56.04
+Solid Organs,4.35,5,8,1380,64.58
+Solid Organs,4.86,5,8,1030,71.2
+Solid Organs,5.34,5,8,316,89.75
+Solid Organs,6.13,5,8,952,70.73
+Solid Organs,11.59,5,8,931,59.93
+Solid Organs,4.15,5,8,1372,65.17
+Solid Organs,8.67,5,8,5,99.78
+Solid Organs,9.64,5,8,116,94.63
+Solid Organs,9.03,5,8,525,78.8
+Solid Organs,8.76,5,8,1147,60.05
+Solid Organs,3.52,5,8,662,82.15
+Solid Organs,6.18,5,8,1125,66.3
+Solid Organs,9.71,5,8,933,64.04
+Solid Organs,5.53,5,8,1370,62.13
+Solid Organs,8.84,5,8,537,78.64
+Solid Organs,5.24,5,8,1135,68.02
+Solid Organs,5.65,5,8,1128,67.35
+Solid Organs,7.01,5,8,647,77.74
+Solid Organs,3.14,5,8,957,75.9
+Solid Organs,7.67,5,8,949,67.8
+Solid Organs,11.02,5,8,202,89.9
+Solid Organs,5.83,5,8,1009,69.86
+Solid Organs,9.9,5,8,307,86.18
+Solid Organs,10.29,5,8,469,79.14
+Solid Organs,9.34,5,8,1189,57.56
+Solid Organs,6.33,5,8,1332,61.13
+Solid Organs,10.93,5,8,1365,48.95
+Solid Organs,6.5,5,8,475,83.72
+Solid Organs,3.41,5,8,523,85.73
+Solid Organs,8.9,5,8,214,90.83
+Solid Organs,8.82,5,8,1146,59.93
+Solid Organs,11.4,5,8,1210,51.9
+Solid Organs,3.98,5,8,268,92.08
+Solid Organs,9.67,5,8,934,64.09
+Solid Organs,4.04,5,8,452,86.95
+Solid Organs,8.82,5,8,39,98.27
+Solid Organs,3.09,5,8,1322,68.43
+Solid Organs,7.48,5,8,631,77.51
+Solid Organs,9.77,5,8,242,89.04
+Solid Organs,4.22,5,8,758,78.84
+Solid Organs,5.12,5,8,714,78.64
+Solid Organs,10.48,5,8,954,61.7
+Solid Organs,4.35,5,8,1239,67.52
+Solid Organs,5.62,5,8,1233,64.97
+Solid Organs,7.2,5,8,695,76.0
+Solid Organs,8.33,5,8,1010,64.74
+Solid Organs,9.01,5,8,3,99.86
+Solid Organs,5.55,5,8,333,89.06
+Solid Organs,8.26,5,8,1218,59.37
+Solid Organs,7.59,5,8,1367,57.35
+Solid Organs,10.96,5,8,647,71.21
+Solid Organs,9.08,5,8,969,64.3
+Solid Organs,11.06,5,8,371,82.19
+Solid Organs,8.58,5,8,507,80.05
+Solid Organs,9.68,5,8,156,92.83
+Solid Organs,3.31,5,8,1388,66.67
+Solid Organs,4.92,5,8,842,75.65
+Solid Organs,5.93,5,8,1333,62.02
+Solid Organs,3.28,5,8,446,87.82
+Solid Organs,7.85,5,8,204,91.88
+Solid Organs,8.02,5,8,981,66.2
+Solid Organs,7.37,5,8,1229,61.15
+Solid Organs,11.19,5,8,1317,49.51
+Solid Organs,11.31,5,8,49,97.4
+Solid Organs,10.09,5,8,424,81.19
+Solid Organs,4.61,5,8,1228,67.23
+Solid Organs,6.86,5,8,150,94.39
+Solid Organs,6.08,5,8,551,81.9
+Solid Organs,3.82,5,8,110,96.71
+Solid Organs,7.69,5,8,1129,62.93
+Solid Organs,4.88,5,8,99,96.78
+Solid Organs,8.05,5,8,872,69.24
+Solid Organs,8.67,5,8,514,79.69
+Solid Organs,8.38,5,8,987,65.28
+Solid Organs,3.95,5,8,65,98.02
+Solid Organs,9.22,5,8,541,77.95
+Solid Organs,10.28,5,8,361,83.53
+Solid Organs,6.43,5,8,77,97.17
+Solid Organs,9.87,5,8,879,65.37
+Solid Organs,8.27,5,8,223,90.89
+Solid Organs,9.6,5,8,52,97.57
+Solid Organs,3.23,5,8,817,78.89
+Solid Organs,7.23,5,8,1244,61.11
+Solid Organs,5.38,5,8,82,97.22
+Solid Organs,6.44,5,8,790,74.49
+Solid Organs,3.11,5,8,1118,72.52
+Solid Organs,11.99,5,8,392,80.09
+Solid Organs,9.86,5,8,1431,50.08
+Solid Organs,3.14,5,8,1409,66.64
+Solid Organs,11.01,5,8,1213,52.79
+Solid Organs,9.02,5,8,824,68.81
+Solid Organs,8.45,5,8,654,75.27
+Solid Organs,5.51,5,8,93,96.83
+Solid Organs,3.16,5,8,820,78.93
+Solid Organs,6.71,5,8,109,95.94
+Solid Organs,9.32,5,8,532,78.13
+Solid Organs,8.88,5,8,140,93.91
+Solid Organs,7.63,5,8,536,80.35
+Solid Organs,6.57,5,8,1243,62.64
+Solid Organs,3.15,5,8,1381,67.14
+Solid Organs,9.01,5,8,571,77.2
+Solid Organs,4.66,5,8,1377,63.96
+Solid Organs,4.4,5,8,484,85.73
+Solid Organs,4.16,5,8,381,88.79
+Solid Organs,9.73,5,8,946,63.59
+Solid Organs,11.74,5,8,718,67.09
+Solid Organs,10.4,5,8,321,85.09
+Solid Organs,5.36,5,8,656,79.86
+Solid Organs,5.08,5,8,1383,62.89
+Solid Organs,7.02,5,8,256,90.51
+Solid Organs,10.5,5,8,587,74.26
+Solid Organs,8.24,5,8,575,78.2
+Solid Organs,8.48,5,8,1155,60.48
+Solid Organs,10.39,5,8,108,94.71
+Solid Organs,3.25,5,8,1360,67.34
+Solid Organs,7.25,5,8,719,75.2
+Solid Organs,7.04,5,8,661,77.27
+Solid Organs,8.16,5,8,841,69.95
+Solid Organs,5.93,5,8,994,70.05
+Solid Organs,6.68,5,8,94,96.49
+Solid Organs,6.34,5,8,754,75.67
+Solid Organs,4.05,5,8,1347,65.91
+Solid Organs,7.63,5,8,318,87.83
+Solid Organs,3.79,5,8,770,79.18
+Solid Organs,6.54,5,8,1320,60.91
+Solid Organs,8.88,5,8,1142,59.9
+Solid Organs,8.96,5,8,1035,62.66
+Solid Organs,11.96,5,8,207,88.96
+Solid Organs,9.08,5,8,713,72.26
+Solid Organs,8.68,5,8,657,74.79
+Solid Organs,5.09,5,8,1082,69.55
+Solid Organs,3.94,5,8,926,75.27
+Solid Organs,4.51,5,8,123,96.13
+Solid Organs,4.81,5,8,430,86.82
+Solid Organs,8.41,5,8,322,86.98
+Solid Organs,4.6,5,8,414,87.47
+Solid Organs,4.12,5,8,564,83.9
+Solid Organs,7.8,5,8,911,68.61
+Solid Organs,9.16,5,8,18,99.18
+Solid Organs,3.36,5,8,644,82.79
+Solid Organs,4.09,5,8,539,84.59
+Solid Organs,3.91,5,8,1134,70.67
+Solid Organs,6.19,5,8,296,89.75
+Solid Organs,10.59,5,8,1069,57.94
+Solid Organs,9.66,5,8,532,77.63
+Solid Organs,11.0,5,8,380,81.87
+Solid Organs,5.46,5,8,682,79.01
+Solid Organs,11.33,5,8,281,85.94
+Solid Organs,3.4,5,8,520,85.82
+Solid Organs,11.97,5,8,1117,53.18
+Solid Organs,11.16,5,8,1408,47.25
+Solid Organs,4.1,5,8,519,85.1
+Solid Organs,11.49,5,8,747,66.52
+Solid Organs,9.48,5,8,457,80.69
+Solid Organs,6.79,5,8,1381,58.95
+Solid Organs,10.98,5,8,212,89.46
+Solid Organs,6.32,5,8,166,94.06
+Solid Organs,10.52,5,8,544,75.86
+Solid Organs,4.83,5,8,1089,69.89
+Solid Organs,5.3,5,8,172,94.3
+Solid Organs,10.65,5,8,1059,58.1
+Solid Organs,5.06,5,8,172,94.4
+Solid Organs,4.18,5,8,755,78.97
+Solid Organs,9.44,5,8,595,75.68
+Solid Organs,6.82,5,8,295,89.3
+Solid Organs,9.1,5,8,520,78.88
+Solid Organs,9.23,5,8,1422,51.93
+Solid Organs,5.92,5,8,1027,69.24
+Solid Organs,9.74,5,8,1030,61.07
+Solid Organs,9.77,5,8,897,65.02
+Solid Organs,6.64,5,8,630,78.8
+Solid Organs,8.42,5,8,103,95.63
+Solid Organs,8.71,5,8,410,83.38
+Solid Organs,11.2,5,8,1325,49.28
+Solid Organs,9.57,5,8,300,86.77
+Solid Organs,3.24,5,8,802,79.21
+Solid Organs,7.02,5,8,856,71.64
+Solid Organs,5.35,5,8,535,83.25
+Solid Organs,10.87,5,8,476,78.03
+Solid Organs,10.17,5,8,946,62.63
+Solid Organs,3.99,5,8,777,78.71
+Solid Organs,4.23,5,8,484,85.91
+Solid Organs,4.35,5,8,899,75.21
+Solid Organs,11.53,5,8,732,66.99
+Solid Organs,10.58,5,8,1430,48.22
+Solid Organs,7.34,5,8,657,76.93
+Solid Organs,5.82,5,8,883,73.08
+Solid Organs,10.68,5,8,131,93.49
+Solid Organs,5.34,5,8,648,80.11
+Solid Organs,3.47,5,8,1151,71.15
+Solid Organs,11.78,5,8,360,81.81
+Solid Organs,6.43,5,8,732,76.15
+Solid Organs,10.54,5,8,554,75.45
+Solid Organs,5.03,5,8,268,91.44
+Solid Organs,5.97,5,8,186,93.53
+Solid Organs,10.93,5,8,753,67.42
+Solid Organs,9.42,5,8,896,65.78
+Solid Organs,7.24,5,8,1074,65.34
+Solid Organs,9.88,5,8,599,74.83
+Solid Organs,8.34,5,8,869,68.77
+Solid Organs,4.98,5,8,339,89.33
+Solid Organs,7.84,5,8,280,89.04
+Solid Organs,3.0,5,8,490,86.96
+Solid Organs,11.57,5,8,753,66.15
+Solid Organs,4.01,5,8,934,74.96
+Solid Organs,5.19,5,8,570,82.46
+Solid Organs,5.09,5,8,1162,67.7
+Solid Organs,4.01,5,8,962,74.31
+Solid Organs,4.58,5,8,360,89.04
+Solid Organs,8.86,5,8,29,98.71
+Solid Organs,11.46,5,8,682,68.99
+Solid Organs,4.38,5,8,39,98.77
+Solid Organs,8.28,5,8,148,93.85
+Solid Organs,8.17,5,8,348,86.24
+Solid Organs,3.56,5,8,1321,67.47
+Solid Organs,11.45,5,8,1089,55.28
+Solid Organs,10.41,5,8,995,60.58
+Solid Organs,6.35,5,8,753,75.68
+Solid Organs,6.18,5,8,640,79.16
+Solid Organs,3.16,5,8,325,91.05
+Solid Organs,9.87,5,8,1338,52.35
+Solid Organs,11.68,5,8,1214,51.08
+Solid Organs,6.35,5,8,1010,68.82
+Solid Organs,5.58,5,8,925,72.44
+Solid Organs,10.72,5,8,655,71.35
+Solid Organs,4.49,5,8,698,79.96
+Solid Organs,7.83,5,8,825,71.04
+Solid Organs,5.89,5,8,162,94.38
+Solid Organs,3.7,5,8,574,84.13
+Solid Organs,4.43,5,8,1145,69.41
+Solid Organs,3.62,5,8,9,99.73
+Solid Organs,8.9,5,8,37,98.35
+Solid Organs,4.89,5,8,1189,67.51
+Solid Organs,6.68,5,8,152,94.39
+Solid Organs,4.54,5,8,694,79.99
+Solid Organs,6.56,5,8,135,95.05
+Solid Organs,9.51,5,8,747,70.35
+Solid Organs,9.04,5,8,43,98.07
+Solid Organs,11.0,5,8,1042,57.8
+Solid Organs,5.39,5,8,799,76.0
+Solid Organs,5.62,5,8,1195,65.83
+Solid Organs,6.99,5,8,606,79.01
+Solid Organs,9.61,5,8,729,70.78
+Solid Organs,8.15,5,8,1184,60.48
+Solid Organs,5.05,5,8,134,95.62
+Solid Organs,4.33,5,8,1103,70.54
+Solid Organs,4.85,5,8,138,95.56
+Solid Organs,3.3,5,8,810,78.95
+Solid Organs,10.77,5,8,453,79.11
+Solid Organs,9.93,5,8,1058,59.82
+Solid Organs,6.81,5,8,389,86.15
+Solid Organs,9.04,5,8,1230,57.2
+Solid Organs,7.89,5,8,1050,64.58
+Solid Organs,7.86,5,8,635,76.82
+Solid Organs,8.22,5,8,1284,57.8
+Solid Organs,3.99,5,8,289,91.48
+Solid Organs,9.27,5,8,493,79.62
+Solid Organs,3.45,5,8,739,80.4
+Solid Organs,8.26,5,8,1288,57.61
+Solid Organs,7.13,5,8,818,72.52
+Solid Organs,6.05,5,8,1269,63.19
+Solid Organs,3.87,5,8,280,91.81
+Solid Organs,7.29,5,8,202,92.28
+Solid Organs,7.21,5,8,807,72.69
+Solid Organs,9.63,5,8,494,79.09
+Solid Organs,3.74,5,8,565,84.31
+Solid Organs,6.49,5,8,903,71.34
+Solid Organs,7.61,5,8,1193,61.49
+Solid Organs,6.6,5,8,461,84.04
+Solid Organs,8.59,5,8,1419,53.63
+Platelets,25.73,22,24,905,67.77
+Platelets,25.68,22,24,182,92.5
+Platelets,24.7,22,24,1269,60.13
+Platelets,21.85,22,24,712,79.07
+Platelets,20.08,22,24,1190,70.67
+Platelets,24.96,22,24,857,70.49
+Platelets,20.76,22,24,324,90.56
+Platelets,24.4,22,24,76,97.06
+Platelets,21.76,22,24,56,98.18
+Platelets,24.18,22,24,895,70.72
+Platelets,20.66,22,24,935,75.27
+Platelets,24.19,22,24,393,85.88
+Platelets,23.2,22,24,170,94.03
+Platelets,25.8,22,24,107,95.48
+Platelets,24.17,22,24,229,91.52
+Platelets,26.89,22,24,1115,59.57
+Platelets,22.18,22,24,682,79.44
+Platelets,21.38,22,24,1372,64.52
+Platelets,24.86,22,24,903,69.35
+Platelets,23.73,22,24,729,76.06
+Platelets,26.84,22,24,680,72.99
+Platelets,20.57,22,24,127,96.24
+Platelets,26.81,22,24,902,65.91
+Platelets,27.77,22,24,423,81.19
+Platelets,20.44,22,24,183,94.67
+Platelets,21.4,22,24,1302,65.94
+Platelets,27.59,22,24,1354,51.74
+Platelets,22.09,22,24,261,91.62
+Platelets,21.47,22,24,521,84.58
+Platelets,24.63,22,24,221,91.56
+Platelets,26.9,22,24,1402,52.11
+Platelets,24.11,22,24,32,98.77
+Platelets,27.39,22,24,306,86.33
+Platelets,21.8,22,24,933,73.59
+Platelets,22.27,22,24,320,89.7
+Platelets,20.25,22,24,265,92.47
+Platelets,23.07,22,24,1400,60.5
+Platelets,20.71,22,24,688,81.08
+Platelets,27.96,22,24,512,77.46
+Platelets,22.16,22,24,195,93.64
+Platelets,23.29,22,24,271,90.6
+Platelets,22.25,22,24,6,99.8
+Platelets,21.85,22,24,997,71.97
+Platelets,23.7,22,24,687,77.3
+Platelets,21.96,22,24,358,88.78
+Platelets,27.84,22,24,724,69.89
+Platelets,24.91,22,24,316,87.94
+Platelets,22.31,22,24,1422,61.61
+Platelets,23.24,22,24,427,85.64
+Platelets,25.56,22,24,443,82.84
+Platelets,25.49,22,24,695,74.53
+Platelets,26.95,22,24,1343,53.45
+Platelets,26.29,22,24,514,79.5
+Platelets,24.11,22,24,1410,58.09
+Platelets,20.12,22,24,1340,67.58
+Platelets,27.14,22,24,215,90.34
+Platelets,22.79,22,24,342,88.66
+Platelets,21.24,22,24,220,93.28
+Platelets,21.85,22,24,143,95.39
+Platelets,26.28,22,24,157,93.24
+Platelets,25.19,22,24,660,76.07
+Platelets,27.84,22,24,1159,56.35
+Platelets,22.64,22,24,131,95.54
+Platelets,23.82,22,24,1263,62.07
+Platelets,23.06,22,24,55,98.05
+Platelets,22.15,22,24,1430,61.77
+Platelets,21.8,22,24,996,72.07
+Platelets,21.27,22,24,324,90.24
+Platelets,26.77,22,24,1277,55.51
+Platelets,25.65,22,24,118,95.08
+Platelets,20.12,22,24,333,90.72
+Platelets,22.73,22,24,1440,60.36
+Platelets,27.71,22,24,433,80.86
+Platelets,24.07,22,24,1337,59.83
+Platelets,27.7,22,24,1385,50.69
+Platelets,24.83,22,24,314,88.07
+Platelets,20.95,22,24,610,82.77
+Platelets,22.35,22,24,658,79.88
+Platelets,27.54,22,24,132,93.8
+Platelets,21.16,22,24,1258,67.33
+Platelets,22.28,22,24,667,79.71
+Platelets,24.0,22,24,1053,66.86
+Platelets,27.31,22,24,476,79.66
+Platelets,25.2,22,24,1161,61.79
+Platelets,23.21,22,24,903,72.09
+Platelets,26.85,22,24,751,70.61
+Platelets,20.19,22,24,834,78.26
+Platelets,26.29,22,24,1105,61.06
+Platelets,26.39,22,24,1420,52.83
+Platelets,22.62,22,24,929,72.38
+Platelets,22.35,22,24,761,77.11
+Platelets,26.75,22,24,1063,61.31
+Platelets,26.27,22,24,60,97.36
+Platelets,23.3,22,24,750,76.09
+Platelets,24.1,22,24,248,90.9
+Platelets,27.96,22,24,865,64.96
+Platelets,23.31,22,24,196,93.1
+Platelets,21.22,22,24,430,87.3
+Platelets,25.64,22,24,120,95.0
+Platelets,20.09,22,24,1093,72.68
+Platelets,25.58,22,24,888,68.53
+Platelets,27.51,22,24,600,74.78
+Platelets,22.35,22,24,137,95.43
+Platelets,21.18,22,24,1387,64.61
+Platelets,22.36,22,24,485,84.73
+Platelets,24.53,22,24,1226,61.52
+Platelets,21.41,22,24,1276,66.47
+Platelets,25.26,22,24,659,76.01
+Platelets,21.6,22,24,461,86.12
+Platelets,20.7,22,24,725,80.19
+Platelets,22.39,22,24,328,89.37
+Platelets,23.14,22,24,949,71.02
+Platelets,21.75,22,24,1437,62.44
+Platelets,24.06,22,24,699,76.46
+Platelets,20.65,22,24,698,80.91
+Platelets,26.59,22,24,782,70.04
+Platelets,21.26,22,24,406,87.94
+Platelets,21.11,22,24,639,81.85
+Platelets,22.59,22,24,633,80.27
+Platelets,26.31,22,24,11,99.51
+Platelets,27.04,22,24,826,67.87
+Platelets,23.15,22,24,1160,65.81
+Platelets,26.53,22,24,980,64.11
+Platelets,21.32,22,24,724,79.43
+Platelets,27.57,22,24,1196,55.9
+Platelets,20.51,22,24,986,74.35
+Platelets,21.73,22,24,497,85.0
+Platelets,22.97,22,24,67,97.64
+Platelets,26.99,22,24,1080,60.34
+Platelets,25.06,22,24,1047,65.03
+Platelets,23.8,22,24,617,79.24
+Platelets,25.25,22,24,1236,59.78
+Platelets,22.15,22,24,835,75.48
+Platelets,27.05,22,24,1202,56.87
+Platelets,24.86,22,24,219,91.5
+Platelets,22.9,22,24,1343,62.11
+Platelets,27.39,22,24,1269,54.35
+Platelets,23.98,22,24,404,85.71
+Platelets,23.21,22,24,1038,68.66
+Platelets,24.42,22,24,188,92.87
+Platelets,22.54,22,24,291,90.42
+Platelets,20.1,22,24,633,83.12
+Platelets,21.38,22,24,801,77.43
+Platelets,21.99,22,24,626,81.18
+Platelets,26.46,22,24,16,99.28
+Platelets,26.09,22,24,248,89.65
+Platelets,23.0,22,24,969,70.74
+Platelets,22.72,22,24,61,97.89
+Platelets,25.03,22,24,566,79.28
+Platelets,25.65,22,24,464,82.0
+Platelets,22.11,22,24,455,85.83
+Platelets,25.0,22,24,559,79.55
+Platelets,27.89,22,24,346,84.21
+Platelets,27.07,22,24,437,81.42
+Platelets,21.9,22,24,890,74.48
+Platelets,20.52,22,24,253,92.67
+Platelets,23.65,22,24,1099,66.35
+Platelets,26.89,22,24,614,75.18
+Platelets,25.06,22,24,535,80.27
+Platelets,20.83,22,24,678,81.19
+Platelets,26.15,22,24,216,90.89
+Platelets,21.6,22,24,191,94.0
+Platelets,27.56,22,24,697,71.28
+Platelets,23.78,22,24,541,81.56
+Platelets,23.75,22,24,1071,66.87
+Platelets,24.88,22,24,969,67.49
+Platelets,25.43,22,24,1373,56.08
+Platelets,20.23,22,24,479,86.83
+Platelets,20.3,22,24,108,96.85
+Platelets,27.07,22,24,274,87.91
+Platelets,24.41,22,24,173,93.42
+Platelets,24.9,22,24,304,88.38
+Platelets,21.88,22,24,225,92.83
+Platelets,24.99,22,24,1206,61.07
+Platelets,24.08,22,24,272,90.07
+Platelets,26.61,22,24,798,69.5
+Platelets,22.98,22,24,1171,65.87
+Platelets,23.61,22,24,993,69.1
+Platelets,26.86,22,24,1350,53.47
+Platelets,23.82,22,24,1131,65.24
+Platelets,26.0,22,24,161,93.19
+Platelets,24.65,22,24,623,77.96
+Platelets,24.67,22,24,782,73.13
+Platelets,23.59,22,24,182,93.46
+Platelets,23.76,22,24,1112,65.82
+Platelets,26.52,22,24,484,80.3
+Platelets,21.4,22,24,690,80.2
+Platelets,23.21,22,24,1282,62.85
+Platelets,22.44,22,24,534,83.24
+Platelets,22.0,22,24,767,77.45
+Platelets,20.84,22,24,781,78.65
+Platelets,21.03,22,24,746,79.26
+Platelets,27.5,22,24,388,82.88
+Platelets,20.75,22,24,1090,71.67
+Platelets,23.45,22,24,861,72.82
+Platelets,23.69,22,24,467,83.97
+Platelets,26.56,22,24,327,86.19
+Platelets,24.69,22,24,1234,60.99
+Platelets,23.64,22,24,1424,58.8
+Platelets,25.26,22,24,394,84.87
+Platelets,24.86,22,24,1420,56.24
+Platelets,21.89,22,24,292,90.79
+Platelets,23.17,22,24,865,73.16
+Platelets,22.09,22,24,677,79.69
+Platelets,20.58,22,24,16,99.52
+Platelets,21.93,22,24,1157,68.13
+Platelets,20.45,22,24,264,92.4
+Platelets,22.12,22,24,356,88.72
+Platelets,20.86,22,24,1218,68.73
+Platelets,21.78,22,24,456,86.1
+Platelets,20.07,22,24,1396,66.57
+Platelets,21.41,22,24,435,87.01
+Platelets,22.51,22,24,865,74.19
+Platelets,27.76,22,24,983,61.62
+Platelets,27.39,22,24,220,89.97
+Platelets,22.59,22,24,555,82.47
+Platelets,26.8,22,24,208,90.84
+Platelets,25.94,22,24,621,76.28
+Platelets,20.49,22,24,961,74.94
+Platelets,24.8,22,24,487,82.15
+Platelets,20.37,22,24,945,75.48
+Platelets,22.92,22,24,652,79.34
+Platelets,28.0,22,24,1036,59.56
+Platelets,20.74,22,24,1254,68.18
+Platelets,26.03,22,24,685,74.04
+Platelets,23.31,22,24,1394,60.15
+Platelets,26.91,22,24,788,69.3
+Platelets,26.77,22,24,687,72.85
+Platelets,26.41,22,24,1007,63.57
+Platelets,20.01,22,24,1375,67.1
+Platelets,22.18,22,24,465,85.47
+Platelets,20.28,22,24,984,74.74
+Platelets,25.93,22,24,315,87.18
+Platelets,21.34,22,24,940,74.14
+Platelets,24.48,22,24,437,84.15
+Platelets,24.99,22,24,352,86.6
+Platelets,27.61,22,24,859,65.79
+Platelets,25.19,22,24,891,69.11
+Platelets,25.91,22,24,1318,56.37
+Platelets,26.23,22,24,527,79.12
+Platelets,24.19,22,24,1106,65.15
+Platelets,23.59,22,24,1104,66.34
+Platelets,20.34,22,24,883,76.93
+Platelets,24.4,22,24,572,79.88
+Platelets,20.6,22,24,692,81.11
+Platelets,24.74,22,24,908,69.42
+Platelets,25.9,22,24,102,95.66
+Platelets,23.16,22,24,1189,65.11
+Platelets,25.4,22,24,677,75.24
+Platelets,26.67,22,24,1034,62.29
+Platelets,20.49,22,24,90,97.33
+Platelets,24.96,22,24,59,97.62
+Platelets,23.53,22,24,21,99.23
+Platelets,26.77,22,24,786,69.62
+Platelets,27.9,22,24,1138,56.82
+Platelets,22.55,22,24,9,99.69
+Platelets,25.4,22,24,668,75.51
+Platelets,27.04,22,24,910,65.25
+Platelets,21.07,22,24,505,85.4
+Platelets,22.3,22,24,269,91.25
+Platelets,26.89,22,24,454,80.98
+Platelets,24.66,22,24,861,70.87
+Platelets,21.28,22,24,985,73.17
+Platelets,20.23,22,24,1248,69.22
+Platelets,26.76,22,24,1029,62.26
+Platelets,21.82,22,24,543,83.63
+Platelets,25.73,22,24,405,84.03
+Platelets,22.22,22,24,530,83.58
+Platelets,20.19,22,24,543,85.24
+Platelets,25.07,22,24,329,87.35
+Platelets,22.94,22,24,971,70.8
+Platelets,27.75,22,24,1210,55.14
+Platelets,23.68,22,24,236,91.55
+Platelets,27.33,22,24,1174,57.03
+Platelets,26.77,22,24,547,77.72
+Platelets,23.62,22,24,50,98.15
+Platelets,20.23,22,24,636,82.91
+Platelets,24.47,22,24,924,69.44
+Platelets,21.87,22,24,131,95.76
+Platelets,27.57,22,24,16,99.23
+Platelets,20.02,22,24,642,82.99
+Platelets,23.04,22,24,1390,60.78
+Platelets,27.32,22,24,1346,52.53
+Platelets,21.0,22,24,1437,63.96
+Platelets,21.9,22,24,1379,63.35
+Platelets,20.92,22,24,662,81.48
+Platelets,25.29,22,24,323,87.39
+Platelets,21.29,22,24,832,76.8
+Platelets,27.54,22,24,515,77.88
+Platelets,23.47,22,24,482,83.72
+Platelets,26.77,22,24,897,66.13
+Platelets,23.88,22,24,330,88.24
+Platelets,24.35,22,24,1084,65.42
+Platelets,27.77,22,24,646,72.74
+Platelets,20.43,22,24,565,84.46
+Platelets,21.25,22,24,1340,65.44
+Platelets,26.42,22,24,751,71.32
+Platelets,23.41,22,24,1082,67.21
+Platelets,27.8,22,24,194,90.87
+Platelets,22.93,22,24,876,73.25
+Red Blood Cells,3.77,5,10,807,78.32
+Red Blood Cells,6.46,5,10,1076,66.93
+Red Blood Cells,7.56,5,10,1408,56.47
+Red Blood Cells,5.81,5,10,862,73.64
+Red Blood Cells,6.55,5,10,1003,68.6
+Red Blood Cells,7.62,5,10,902,69.23
+Red Blood Cells,7.76,5,10,1011,65.92
+Red Blood Cells,3.85,5,10,503,85.79
+Red Blood Cells,3.84,5,10,529,85.12
+Red Blood Cells,5.0,5,10,818,76.13
+Red Blood Cells,3.17,5,10,100,97.15
+Red Blood Cells,3.87,5,10,1318,66.88
+Red Blood Cells,5.82,5,10,636,79.78
+Red Blood Cells,6.26,5,10,1126,66.11
+Red Blood Cells,3.94,5,10,1385,65.38
+Red Blood Cells,8.02,5,10,961,66.76
+Red Blood Cells,13.5,5,10,944,55.02
+Red Blood Cells,5.55,5,10,1191,66.09
+Red Blood Cells,5.71,5,10,154,94.72
+Red Blood Cells,6.0,5,10,156,94.54
+Red Blood Cells,12.29,5,10,407,79.01
+Red Blood Cells,4.21,5,10,1334,65.84
+Red Blood Cells,11.59,5,10,1062,55.78
+Red Blood Cells,7.32,5,10,860,70.98
+Red Blood Cells,5.88,5,10,1189,65.42
+Red Blood Cells,5.97,5,10,110,96.12
+Red Blood Cells,4.31,5,10,108,96.65
+Red Blood Cells,11.37,5,10,1121,54.54
+Red Blood Cells,10.34,5,10,830,65.99
+Red Blood Cells,10.5,5,10,697,70.24
+Red Blood Cells,3.88,5,10,187,94.45
+Red Blood Cells,8.68,5,10,784,70.71
+Red Blood Cells,10.41,5,10,96,95.28
+Red Blood Cells,6.9,5,10,5,99.81
+Red Blood Cells,8.96,5,10,403,83.36
+Red Blood Cells,6.97,5,10,757,74.54
+Red Blood Cells,3.99,5,10,782,78.58
+Red Blood Cells,12.68,5,10,1421,42.87
+Red Blood Cells,9.94,5,10,51,97.55
+Red Blood Cells,6.12,5,10,736,76.52
+Red Blood Cells,8.68,5,10,15,99.34
+Red Blood Cells,11.93,5,10,626,70.26
+Red Blood Cells,6.1,5,10,886,72.49
+Red Blood Cells,12.65,5,10,1379,44.05
+Red Blood Cells,8.14,5,10,689,74.65
+Red Blood Cells,4.58,5,10,1380,64.08
+Red Blood Cells,4.59,5,10,811,76.97
+Red Blood Cells,8.12,5,10,1006,65.3
+Red Blood Cells,9.6,5,10,283,87.45
+Red Blood Cells,5.63,5,10,67,97.68
+Red Blood Cells,7.01,5,10,1141,64.14
+Red Blood Cells,11.48,5,10,308,84.54
+Red Blood Cells,8.59,5,10,665,74.67
+Red Blood Cells,11.36,5,10,1089,55.52
+Red Blood Cells,3.12,5,10,4,99.88
+Red Blood Cells,4.49,5,10,111,96.51
+Red Blood Cells,5.6,5,10,386,87.39
+Red Blood Cells,3.93,5,10,1181,69.62
+Red Blood Cells,5.76,5,10,470,84.69
+Red Blood Cells,13.56,5,10,669,65.37
+Red Blood Cells,7.26,5,10,278,89.55
+Red Blood Cells,13.35,5,10,525,72.0
+Red Blood Cells,10.01,5,10,977,62.04
+Red Blood Cells,6.1,5,10,8,99.71
+Red Blood Cells,5.11,5,10,16,99.46
+Red Blood Cells,10.04,5,10,772,68.52
+Red Blood Cells,3.13,5,10,199,94.43
+Red Blood Cells,8.82,5,10,467,81.17
+Red Blood Cells,5.25,5,10,276,91.05
+Red Blood Cells,4.53,5,10,1059,71.15
+Red Blood Cells,8.67,5,10,1417,53.48
+Red Blood Cells,5.05,5,10,1362,63.4
+Red Blood Cells,9.37,5,10,508,78.93
+Red Blood Cells,11.82,5,10,747,65.85
+Red Blood Cells,9.78,5,10,1224,55.55
+Red Blood Cells,5.7,5,10,516,83.39
+Red Blood Cells,13.08,5,10,727,64.0
+Red Blood Cells,13.04,5,10,1025,53.4
+Red Blood Cells,4.3,5,10,945,74.2
+Red Blood Cells,10.36,5,10,1395,49.66
+Red Blood Cells,6.98,5,10,477,83.09
+Red Blood Cells,10.04,5,10,1173,56.29
+Red Blood Cells,10.35,5,10,922,62.99
+Red Blood Cells,13.28,5,10,178,89.51
+Red Blood Cells,13.41,5,10,164,90.2
+Red Blood Cells,12.13,5,10,505,74.9
+Red Blood Cells,13.08,5,10,960,55.47
+Red Blood Cells,8.18,5,10,367,85.54
+Red Blood Cells,7.15,5,10,277,89.67
+Red Blood Cells,4.64,5,10,1402,63.47
+Red Blood Cells,3.88,5,10,309,90.99
+Red Blood Cells,12.21,5,10,539,73.32
+Red Blood Cells,11.15,5,10,964,59.88
+Red Blood Cells,11.25,5,10,746,67.05
+Red Blood Cells,8.37,5,10,14,99.4
+Red Blood Cells,3.47,5,10,199,94.28
+Red Blood Cells,12.38,5,10,1292,47.08
+Red Blood Cells,11.31,5,10,80,95.78
+Red Blood Cells,7.53,5,10,1401,56.69
+Red Blood Cells,6.95,5,10,338,87.73
+Red Blood Cells,3.42,5,10,1242,69.35
+Red Blood Cells,6.97,5,10,949,69.19
+Red Blood Cells,8.23,5,10,685,74.62
+Red Blood Cells,6.41,5,10,868,72.42
+Red Blood Cells,12.11,5,10,883,60.38
+Red Blood Cells,3.59,5,10,1339,67.04
+Red Blood Cells,12.74,5,10,324,82.38
+Red Blood Cells,4.38,5,10,263,91.99
+Red Blood Cells,10.76,5,10,752,67.8
+Red Blood Cells,5.31,5,10,477,84.97
+Red Blood Cells,10.19,5,10,347,84.21
+Red Blood Cells,8.49,5,10,1038,63.62
+Red Blood Cells,5.02,5,10,1089,69.51
+Red Blood Cells,7.49,5,10,420,84.4
+Red Blood Cells,9.31,5,10,516,78.72
+Red Blood Cells,12.46,5,10,573,71.47
+Red Blood Cells,10.35,5,10,1223,54.17
+Red Blood Cells,10.94,5,10,1223,52.68
+Red Blood Cells,9.2,5,10,251,89.1
+Red Blood Cells,4.77,5,10,1123,69.23
+Red Blood Cells,3.57,5,10,1308,67.71
+Red Blood Cells,12.89,5,10,546,71.86
+Red Blood Cells,5.09,5,10,196,93.63
+Red Blood Cells,8.56,5,10,597,76.99
+Red Blood Cells,8.73,5,10,660,74.62
+Red Blood Cells,9.33,5,10,284,87.64
+Red Blood Cells,7.48,5,10,806,72.24
+Red Blood Cells,5.63,5,10,198,93.3
+Red Blood Cells,13.2,5,10,598,69.06
+Red Blood Cells,3.61,5,10,268,92.3
+Red Blood Cells,5.81,5,10,1008,69.93
+Red Blood Cells,10.34,5,10,829,66.02
+Red Blood Cells,12.06,5,10,56,96.86
+Red Blood Cells,11.92,5,10,1006,56.75
+Red Blood Cells,6.41,5,10,10,99.63
+Red Blood Cells,11.43,5,10,564,73.61
+Red Blood Cells,4.16,5,10,995,73.29
+Red Blood Cells,8.72,5,10,449,81.95
+Red Blood Cells,7.52,5,10,828,71.53
+Red Blood Cells,9.23,5,10,250,89.11
+Red Blood Cells,12.1,5,10,80,95.53
+Red Blood Cells,3.16,5,10,367,89.95
+Red Blood Cells,12.04,5,10,604,70.95
+Red Blood Cells,7.38,5,10,872,70.52
+Red Blood Cells,13.3,5,10,935,55.81
+Red Blood Cells,13.71,5,10,156,90.46
+Red Blood Cells,4.23,5,10,398,88.26
+Red Blood Cells,7.36,5,10,1097,64.5
+Red Blood Cells,10.17,5,10,1018,60.44
+Red Blood Cells,5.72,5,10,47,98.36
+Red Blood Cells,3.31,5,10,691,81.73
+Red Blood Cells,8.37,5,10,957,66.15
+Red Blood Cells,10.49,5,10,1215,54.05
+Red Blood Cells,12.0,5,10,1200,50.67
+Red Blood Cells,12.52,5,10,443,77.04
+Red Blood Cells,13.95,5,10,663,64.82
+Red Blood Cells,6.01,5,10,841,73.84
+Red Blood Cells,6.54,5,10,945,70.12
+Red Blood Cells,13.38,5,10,1001,53.37
+Red Blood Cells,12.3,5,10,24,98.62
+Red Blood Cells,3.68,5,10,180,94.73
+Red Blood Cells,9.24,5,10,80,96.38
+Red Blood Cells,9.77,5,10,613,74.52
+Red Blood Cells,5.97,5,10,30,98.93
+Red Blood Cells,13.19,5,10,174,89.79
+Red Blood Cells,5.24,5,10,803,76.13
+Red Blood Cells,9.95,5,10,962,62.62
+Red Blood Cells,6.51,5,10,1095,66.35
+Red Blood Cells,8.27,5,10,59,97.5
+Red Blood Cells,9.32,5,10,838,67.78
+Red Blood Cells,6.9,5,10,178,93.36
+Red Blood Cells,3.27,5,10,1329,67.92
+Red Blood Cells,7.42,5,10,67,97.34
+Red Blood Cells,6.0,5,10,971,70.5
+Red Blood Cells,12.06,5,10,743,65.5
+Red Blood Cells,9.93,5,10,700,71.18
+Red Blood Cells,12.36,5,10,629,69.34
+Red Blood Cells,8.43,5,10,175,92.69
+Red Blood Cells,6.88,5,10,654,77.72
+Red Blood Cells,6.89,5,10,1067,66.25
+Red Blood Cells,12.78,5,10,662,67.21
+Red Blood Cells,4.11,5,10,982,73.68
+Red Blood Cells,12.19,5,10,669,68.08
+Red Blood Cells,9.44,5,10,907,65.41
+Red Blood Cells,12.81,5,10,562,71.31
+Red Blood Cells,12.31,5,10,1104,52.73
+Red Blood Cells,13.93,5,10,420,76.01
+Red Blood Cells,4.94,5,10,976,72.34
+Red Blood Cells,11.16,5,10,454,78.53
+Red Blood Cells,7.69,5,10,956,67.57
+Red Blood Cells,3.57,5,10,225,93.51
+Red Blood Cells,11.74,5,10,219,88.54
+Red Blood Cells,11.95,5,10,133,92.76
+Red Blood Cells,12.44,5,10,1066,53.58
+Red Blood Cells,11.9,5,10,363,81.52
+Red Blood Cells,9.22,5,10,4,99.82
+Red Blood Cells,7.92,5,10,768,72.58
+Red Blood Cells,4.84,5,10,437,86.6
+Red Blood Cells,10.76,5,10,958,60.94
+Red Blood Cells,11.77,5,10,974,58.12
+Red Blood Cells,6.81,5,10,716,75.99
+Red Blood Cells,8.12,5,10,695,74.5
+Red Blood Cells,9.53,5,10,533,77.79
+Red Blood Cells,10.19,5,10,192,90.93
+Red Blood Cells,5.59,5,10,366,88.01
+Red Blood Cells,5.44,5,10,96,96.74
+Red Blood Cells,11.75,5,10,546,73.8
+Red Blood Cells,3.67,5,10,92,97.27
+Red Blood Cells,3.72,5,10,416,88.2
+Red Blood Cells,10.42,5,10,1347,50.73
+Red Blood Cells,13.13,5,10,533,72.02
+Red Blood Cells,10.37,5,10,440,80.17
+Red Blood Cells,13.41,5,10,602,68.48
+Red Blood Cells,12.89,5,10,437,76.76
+Red Blood Cells,12.49,5,10,1060,53.63
+Red Blood Cells,8.69,5,10,1316,55.87
+Red Blood Cells,9.99,5,10,416,81.63
+Red Blood Cells,6.8,5,10,1064,66.53
+Red Blood Cells,7.2,5,10,372,86.33
+Red Blood Cells,5.38,5,10,461,85.36
+Red Blood Cells,10.99,5,10,155,92.17
+Red Blood Cells,12.49,5,10,1356,45.09
+Red Blood Cells,8.58,5,10,878,68.03
+Red Blood Cells,7.23,5,10,239,90.97
+Red Blood Cells,10.68,5,10,32,98.37
+Red Blood Cells,10.91,5,10,100,94.91
+Red Blood Cells,11.44,5,10,653,70.12
+Red Blood Cells,12.25,5,10,1214,49.61
+Red Blood Cells,11.18,5,10,1083,56.14
+Red Blood Cells,7.67,5,10,1271,59.44
+Red Blood Cells,11.4,5,10,141,92.64
+Red Blood Cells,3.11,5,10,1407,66.72
+Red Blood Cells,6.27,5,10,1201,64.29
+Red Blood Cells,5.3,5,10,714,78.39
+Red Blood Cells,12.59,5,10,1055,53.54
+Red Blood Cells,10.22,5,10,1368,50.7
+Red Blood Cells,3.36,5,10,1384,66.64
+Red Blood Cells,7.99,5,10,190,92.34
+Red Blood Cells,7.34,5,10,1258,60.53
+Red Blood Cells,11.76,5,10,219,88.52
+Red Blood Cells,9.63,5,10,559,76.69
+Red Blood Cells,5.76,5,10,584,81.34
+Red Blood Cells,8.32,5,10,530,79.62
+Red Blood Cells,9.34,5,10,735,71.07
+Red Blood Cells,6.39,5,10,242,91.41
+Red Blood Cells,11.83,5,10,132,92.88
+Red Blood Cells,10.48,5,10,1092,57.54
+Red Blood Cells,3.81,5,10,1083,71.97
+Red Blood Cells,7.74,5,10,1390,56.42
+Red Blood Cells,11.03,5,10,19,99.0
+Red Blood Cells,3.11,5,10,1123,72.42
+Red Blood Cells,5.9,5,10,1289,63.09
+Red Blood Cells,7.33,5,10,1210,61.72
+Red Blood Cells,10.08,5,10,128,93.91
+Red Blood Cells,5.06,5,10,430,86.59
+Red Blood Cells,10.85,5,10,165,91.77
+Red Blood Cells,11.18,5,10,361,82.48
+Red Blood Cells,11.02,5,10,1256,51.58
+Red Blood Cells,9.8,5,10,1377,51.57
+Red Blood Cells,13.54,5,10,1267,44.74
+Red Blood Cells,12.73,5,10,511,73.67
+Red Blood Cells,8.47,5,10,1065,62.91
+Red Blood Cells,12.24,5,10,1222,49.41
+Red Blood Cells,9.59,5,10,320,85.94
+Red Blood Cells,5.16,5,10,1107,68.82
+Red Blood Cells,11.06,5,10,776,66.36
+Red Blood Cells,11.08,5,10,438,79.3
+Red Blood Cells,13.44,5,10,307,82.41
+Red Blood Cells,4.9,5,10,1050,70.66
+Red Blood Cells,8.36,5,10,1295,57.18
+Red Blood Cells,7.67,5,10,1017,65.94
+Red Blood Cells,5.87,5,10,648,79.37
+Red Blood Cells,4.09,5,10,347,89.78
+Red Blood Cells,10.22,5,10,311,85.69
+Red Blood Cells,9.86,5,10,199,90.83
+Red Blood Cells,7.11,5,10,370,86.49
+Red Blood Cells,10.86,5,10,697,69.57
+Red Blood Cells,3.44,5,10,1160,71.02
+Red Blood Cells,6.42,5,10,1062,67.36
+Red Blood Cells,13.65,5,10,997,52.83
+Red Blood Cells,13.46,5,10,831,59.18
+Red Blood Cells,3.19,5,10,630,83.34
+Red Blood Cells,3.14,5,10,822,78.91
+Red Blood Cells,11.52,5,10,1384,46.9
+Red Blood Cells,11.63,5,10,699,68.01
+Red Blood Cells,8.18,5,10,1217,59.57
+Red Blood Cells,3.93,5,10,65,98.03
+Red Blood Cells,3.54,5,10,791,79.04
+Red Blood Cells,4.47,5,10,610,82.28
+Red Blood Cells,6.84,5,10,1238,62.16
+Red Blood Cells,12.77,5,10,645,67.92
+Red Blood Cells,3.86,5,10,790,78.59
+Red Blood Cells,9.47,5,10,477,79.95
+Red Blood Cells,3.74,5,10,768,79.3
+Red Blood Cells,6.85,5,10,351,87.37
+Red Blood Cells,5.99,5,10,1096,67.4
+Red Blood Cells,3.23,5,10,1023,74.31
+Red Blood Cells,10.79,5,10,182,91.0
+Red Blood Cells,9.12,5,10,344,85.46
+Red Blood Cells,7.01,5,10,10,99.61

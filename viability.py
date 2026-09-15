@@ -127,7 +127,7 @@ def predict_viability(
     )
 
     # Calculate current viability
-    viability = calculate_viability(
+    viability_percentage = calculate_viability(
         degradation_rate,
         elapsed_hours
     )
@@ -146,13 +146,13 @@ def predict_viability(
     )
 
     # Calculate risk based on viability
-    risk = classify_risk(viability)
+    risk_level = classify_risk(viability_percentage)
 
     return {
-        "viability_percentage": round(viability, 2),
+        "viability_percentage": round(viability_percentage, 2),
         "degradation_rate": round(degradation_rate, 6),
         "time_remaining_hours": round(safe_time, 2),
-        "risk_level": risk,
+        "risk_level": risk_level,
         "temperature_status": temperature_status
     }
 
