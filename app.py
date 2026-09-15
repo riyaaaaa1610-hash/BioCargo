@@ -1,34 +1,36 @@
 import streamlit as st
 from prediction import get_prediction
+from streamlit_echarts import st_echarts
+import matplotlib.pyplot as plt
+import numpy as np
 
-# ---------------- PAGE CONFIG ---------------- #
 st.set_page_config(
-    page_title="BioCargo Tracker",
+    page_title="BioCargo",
     page_icon="🧬",
     layout="wide"
 )
 
-# ---------------- LOAD CSS ---------------- #
+# Load CSS
 with open("styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# ---------------- HERO HEADER ---------------- #
+# Hero
 st.markdown("""
 <div class="hero">
-    <h1>🧬 Synthetic Biology Cargo Viability Tracker</h1>
-    <p>Real-time monitoring for temperature-sensitive biological cargo during flight delays.</p>
+<h1>🧬 Synthetic Biology Cargo Viability Tracker</h1>
+<p>Real-time monitoring of temperature-sensitive biological shipments during flight delays.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- INPUT SECTION ---------------- #
-st.markdown('<div class="section-title">Cargo Input</div>', unsafe_allow_html=True)
+# Input
 
-col1, col2 = st.columns(2)
+left,right=st.columns(2)
 
-with col1:
-    cargo_id = st.text_input("Cargo ID", "ORG-101")
+with left:
 
-    cargo_type = st.selectbox(
+    cargo_id=st.text_input("Cargo ID","ORG-101")
+
+    cargo_type=st.selectbox(
         "Cargo Type",
         [
             "Solid Organs",
@@ -39,118 +41,152 @@ with col1:
         ]
     )
 
-with col2:
-    current_temp = st.number_input(
+with right:
+
+    current_temp=st.number_input(
         "Current Temperature (°C)",
-        value=5.0,
-        step=1.0
+        value=5.0
     )
 
-    flight_delay_minutes = st.number_input(
+    flight_delay_minutes=st.number_input(
         "Flight Delay (Minutes)",
-        min_value=0,
-        value=120,
-        step=10
+        value=120
     )
 
-# ---------------- BACKEND PREDICTION ---------------- #
-try:
-    result = get_prediction(
-        cargo_type=cargo_type,
-        current_temp=current_temp,
-        flight_delay_minutes=flight_delay_minutes
-    )
+# Prediction
 
-    viability_percentage = result["viability_percentage"]
-    risk_level = result["risk_level"]
+result=get_prediction(
+    cargo_type=cargo_type,
+    current_temp=current_temp,
+    flight_delay_minutes=flight_delay_minutes
+)
 
-except ValueError as e:
-    st.error(str(e))
-    st.stop()
+viability=result["viability_percentage"]
+risk=result["risk_level"]
 
-# ---------------- STATUS CARDS ---------------- #
-st.markdown("---")
-st.markdown('<div class="section-title">Live Cargo Status</div>', unsafe_allow_html=True)
+# KPI Cards
 
-c1, c2, c3 = st.columns(3)
+st.markdown("## Live Status")
+
+c1,c2,c3=st.columns(3)
 
 with c1:
     st.markdown(f"""
-    <div class="metric-card">
-        <div class="metric-title">BIOLOGICAL VIABILITY</div>
-        <div class="metric-value">{viability_percentage}%</div>
+    <div class="card">
+        <div class="metric-title">VIABILITY</div>
+        <div class="metric-value">{viability}%</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,unsafe_allow_html=True)
 
 with c2:
     st.markdown(f"""
-    <div class="metric-card">
+    <div class="card">
         <div class="metric-title">FLIGHT DELAY</div>
         <div class="metric-value">{flight_delay_minutes} min</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,unsafe_allow_html=True)
 
 with c3:
 
-    status_class = "safe"
+    color="safe"
 
-    if risk_level.lower() == "warning":
-        status_class = "warning"
-    elif risk_level.lower() != "safe":
-        status_class = "critical"
+    if risk=="Warning":
+        color="warning"
+
+    elif risk=="Critical":
+        color="critical"
 
     st.markdown(f"""
-    <div class="metric-card">
+    <div class="card">
         <div class="metric-title">RISK LEVEL</div>
-        <div class="metric-value {status_class}">{risk_level}</div>
+        <div class="{color}">{risk}</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,unsafe_allow_html=True)
 
-# ---------------- VIABILITY BAR ---------------- #
-st.markdown("---")
-st.markdown('<div class="section-title">Viability Monitor</div>', unsafe_allow_html=True)
-
-st.progress(viability_percentage / 100)
-
-# ---------------- DETAILS ---------------- #
 st.markdown("---")
 
-left, right = st.columns([2, 1])
+# Gauge + Timer
+
+left,right=st.columns([2,1])
 
 with left:
 
-    st.markdown('<div class="section-title">Cargo Details</div>', unsafe_allow_html=True)
+    st.markdown("### Biological Viability")
 
-    st.markdown(f"""
-    <div class="input-box">
+    option={
+        "series":[{
+            "type":"gauge",
+            "progress":{"show":True},
+            "axisLine":{"lineStyle":{"width":18}},
+            "detail":{"formatter":"{value}%","fontSize":28},
+            "data":[{"value":viability}]
+        }]
+    }
 
-    **Cargo ID:** {cargo_id}
-
-    **Cargo Type:** {cargo_type}
-
-    **Current Temperature:** {current_temp}°C
-
-    **Flight Delay:** {flight_delay_minutes} minutes
-
-    </div>
-    """, unsafe_allow_html=True)
+    st_echarts(option,height="320px")
 
 with right:
 
-    st.markdown('<div class="section-title">Operational Status</div>', unsafe_allow_html=True)
+    st.markdown("### Countdown")
 
-    if risk_level.lower() == "safe":
-        st.markdown('<div class="badge-safe">SAFE</div>', unsafe_allow_html=True)
-        st.success("Cargo remains within safe operating conditions.")
+    hours=max(0,(100-viability)//10+1)
 
-    elif risk_level.lower() == "warning":
-        st.markdown('<div class="badge-warning">WARNING</div>', unsafe_allow_html=True)
-        st.warning("Monitor the shipment closely.")
+    st.markdown(f"""
+    <div class="card" style="text-align:center;">
+        <h1>{hours}:00:00</h1>
+        <p>Estimated Safe Time</p>
+    </div>
+    """,unsafe_allow_html=True)
 
-    else:
-        st.markdown('<div class="badge-critical">CRITICAL</div>', unsafe_allow_html=True)
-        st.error("Immediate intervention required.")
+# Charts
 
-# ---------------- FOOTER ---------------- #
 st.markdown("---")
-st.caption("BioCargo • AI-assisted Cold Chain Monitoring • VMEDITHON 3.0")
+
+left,right=st.columns(2)
+
+with left:
+
+    st.markdown("### Temperature Trend")
+
+    temps=np.linspace(current_temp,current_temp+4,6)
+
+    fig,ax=plt.subplots(figsize=(5,3))
+    ax.plot(temps,marker="o",linewidth=3)
+    ax.set_facecolor("#0F2341")
+    fig.patch.set_facecolor("#0F2341")
+    ax.tick_params(colors="white")
+    ax.spines[:].set_color("white")
+    ax.set_ylabel("°C",color="white")
+
+    st.pyplot(fig)
+
+with right:
+
+    st.markdown("### Cargo Details")
+
+    st.markdown(f"""
+    <div class="card">
+
+    **Cargo ID**
+
+    {cargo_id}
+
+    **Cargo Type**
+
+    {cargo_type}
+
+    **Current Temperature**
+
+    {current_temp}°C
+
+    **Flight Delay**
+
+    {flight_delay_minutes} minutes
+
+    </div>
+    """,unsafe_allow_html=True)
+
+# Footer
+
+st.markdown("---")
+st.caption("BioCargo • AI-powered Cold Chain Monitoring • VMEDITHON 3.0")
