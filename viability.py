@@ -109,6 +109,7 @@ def predict_viability(
     current_temp,
     safe_temp,
     max_temp_threshold,
+    flight_duration_hours,
     flight_delay_minutes,
     decay_rate
 ):
@@ -117,7 +118,7 @@ def predict_viability(
     """
 
     # Convert delay from minutes to hours
-    elapsed_hours = flight_delay_minutes / 60
+    total_exposure_hours = flight_duration_hours + (flight_delay_minutes / 60)
 
     # Calculate temperature-adjusted degradation
     degradation_rate = calculate_degradation_rate(
@@ -129,13 +130,13 @@ def predict_viability(
     # Calculate current viability
     viability_percentage = calculate_viability(
         degradation_rate,
-        elapsed_hours
+        total_exposure_hours
     )
 
     # Calculate remaining safe time
     safe_time = calculate_safe_time(
         degradation_rate,
-        elapsed_hours
+        total_exposure_hours
     )
 
     # Check temperature against thresholds
@@ -152,6 +153,7 @@ def predict_viability(
         "viability_percentage": round(viability_percentage, 2),
         "degradation_rate": round(degradation_rate, 6),
         "time_remaining_hours": round(safe_time, 2),
+        "total_exposure_hours": round(total_exposure_hours,2),
         "risk_level": risk_level,
         "temperature_status": temperature_status
     }
@@ -159,26 +161,63 @@ def predict_viability(
 if __name__ == "__main__":
 
     test_cases = [
-        # 10-hour delay
-        {"current_temp": 5, "safe_temp": 5, "max_temp_threshold": 8,
-         "flight_delay_minutes": 600, "decay_rate": 0.02},
 
-        {"current_temp": 7, "safe_temp": 5, "max_temp_threshold": 8,
-         "flight_delay_minutes": 600, "decay_rate": 0.02},
+    # 10-hour delay
+    {
+        "current_temp": 5,
+        "safe_temp": 5,
+        "max_temp_threshold": 8,
+        "flight_duration_hours": 8,
+        "flight_delay_minutes": 600,
+        "decay_rate": 0.02
+    },
 
-        {"current_temp": 10, "safe_temp": 5, "max_temp_threshold": 8,
-         "flight_delay_minutes": 600, "decay_rate": 0.02},
+    {
+        "current_temp": 7,
+        "safe_temp": 5,
+        "max_temp_threshold": 8,
+        "flight_duration_hours": 8,
+        "flight_delay_minutes": 600,
+        "decay_rate": 0.02
+    },
 
-        # 20-hour delay
-        {"current_temp": 5, "safe_temp": 5, "max_temp_threshold": 8,
-         "flight_delay_minutes": 1200, "decay_rate": 0.02},
+    {
+        "current_temp": 10,
+        "safe_temp": 5,
+        "max_temp_threshold": 8,
+        "flight_duration_hours": 8,
+        "flight_delay_minutes": 600,
+        "decay_rate": 0.02
+    },
 
-        {"current_temp": 7, "safe_temp": 5, "max_temp_threshold": 8,
-         "flight_delay_minutes": 1200, "decay_rate": 0.02},
+    # 20-hour delay
+    {
+        "current_temp": 5,
+        "safe_temp": 5,
+        "max_temp_threshold": 8,
+        "flight_duration_hours": 8,
+        "flight_delay_minutes": 1200,
+        "decay_rate": 0.02
+    },
 
-        {"current_temp": 10, "safe_temp": 5, "max_temp_threshold": 8,
-         "flight_delay_minutes": 1200, "decay_rate": 0.02}
-    ]
+    {
+        "current_temp": 7,
+        "safe_temp": 5,
+        "max_temp_threshold": 8,
+        "flight_duration_hours": 8,
+        "flight_delay_minutes": 1200,
+        "decay_rate": 0.02
+    },
+
+    {
+        "current_temp": 10,
+        "safe_temp": 5,
+        "max_temp_threshold": 8,
+        "flight_duration_hours": 8,
+        "flight_delay_minutes": 1200,
+        "decay_rate": 0.02
+    }
+]
 
     for case in test_cases:
         result = predict_viability(**case)
