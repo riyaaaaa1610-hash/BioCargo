@@ -83,7 +83,7 @@ def get_prediction(
             arrhenius_result["viability_percentage"],
 
         "ml_viability":
-            round(ml_viability, 2),
+            float(round(ml_viability, 2)),
 
         "risk_level":
             arrhenius_result["risk_level"],

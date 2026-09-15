@@ -9,7 +9,6 @@ from models import Cargo
 def get_connection():
 
     try:
-
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -20,7 +19,6 @@ def get_connection():
         return connection
 
     except Error as error:
-
         print("Database connection error:", error)
         return None
 
@@ -38,7 +36,6 @@ def add_cargo(cargo):
     cursor = connection.cursor()
 
     try:
-
         query = """
             INSERT INTO Cargo (
                 cargo_id,
@@ -68,17 +65,14 @@ def add_cargo(cargo):
 
         cursor.execute(query, values)
         connection.commit()
-
         return True
 
     except Error as error:
-
         print("Error adding cargo:", error)
         connection.rollback()
         return False
 
     finally:
-
         cursor.close()
         connection.close()
 
@@ -96,7 +90,6 @@ def get_all_cargo():
     cursor = connection.cursor()
 
     try:
-
         query = """
             SELECT
                 cargo_id,
@@ -109,17 +102,14 @@ def get_all_cargo():
                 risk_level,
                 flight_duration_hours
             FROM Cargo
+            ORDER BY cargo_id
         """
 
         cursor.execute(query)
-
         records = cursor.fetchall()
 
-        cargo_list = []
-
-        for record in records:
-
-            cargo = Cargo(
+        return [
+            Cargo(
                 record[0],
                 record[1],
                 record[2],
@@ -130,18 +120,14 @@ def get_all_cargo():
                 record[7],
                 record[8]
             )
-
-            cargo_list.append(cargo)
-
-        return cargo_list
+            for record in records
+        ]
 
     except Error as error:
-
         print("Error retrieving cargo:", error)
         return []
 
     finally:
-
         cursor.close()
         connection.close()
 
@@ -159,7 +145,6 @@ def get_cargo(cargo_id):
     cursor = connection.cursor()
 
     try:
-
         query = """
             SELECT
                 cargo_id,
@@ -176,13 +161,12 @@ def get_cargo(cargo_id):
         """
 
         cursor.execute(query, (cargo_id,))
-
         record = cursor.fetchone()
 
         if record is None:
             return None
 
-        cargo = Cargo(
+        return Cargo(
             record[0],
             record[1],
             record[2],
@@ -194,26 +178,25 @@ def get_cargo(cargo_id):
             record[8]
         )
 
-        return cargo
-
     except Error as error:
-
         print("Error retrieving cargo:", error)
         return None
 
     finally:
-
         cursor.close()
         connection.close()
 
 
 # =========================================================
-# UPDATE - TEMPERATURE AND DELAY
+# UPDATE - TEMPERATURE, DELAY, AND PREDICTION RESULTS
 # =========================================================
 def update_cargo(
     cargo_id,
     current_temp,
-    flight_delay_minutes
+    flight_delay_minutes,
+    viability_percentage=None,
+    risk_level=None,
+    flight_duration_hours=None
 ):
 
     connection = get_connection()
@@ -225,18 +208,45 @@ def update_cargo(
 
     try:
 
-        query = """
-            UPDATE Cargo
-            SET current_temp = %s,
-                flight_delay_minutes = %s
-            WHERE cargo_id = %s
-        """
+        if (
+            viability_percentage is None
+            or risk_level is None
+            or flight_duration_hours is None
+        ):
 
-        values = (
-            current_temp,
-            flight_delay_minutes,
-            cargo_id
-        )
+            query = """
+                UPDATE Cargo
+                SET current_temp = %s,
+                    flight_delay_minutes = %s
+                WHERE cargo_id = %s
+            """
+
+            values = (
+                current_temp,
+                flight_delay_minutes,
+                cargo_id
+            )
+
+        else:
+
+            query = """
+                UPDATE Cargo
+                SET current_temp = %s,
+                    flight_delay_minutes = %s,
+                    flight_duration_hours = %s,
+                    viability_percentage = %s,
+                    risk_level = %s
+                WHERE cargo_id = %s
+            """
+
+            values = (
+                current_temp,
+                flight_delay_minutes,
+                flight_duration_hours,
+                viability_percentage,
+                risk_level,
+                cargo_id
+            )
 
         cursor.execute(query, values)
         connection.commit()
@@ -244,13 +254,11 @@ def update_cargo(
         return cursor.rowcount > 0
 
     except Error as error:
-
         print("Error updating cargo:", error)
         connection.rollback()
         return False
 
     finally:
-
         cursor.close()
         connection.close()
 
@@ -268,7 +276,6 @@ def delete_cargo(cargo_id):
     cursor = connection.cursor()
 
     try:
-
         query = """
             DELETE FROM Cargo
             WHERE cargo_id = %s
@@ -280,13 +287,11 @@ def delete_cargo(cargo_id):
         return cursor.rowcount > 0
 
     except Error as error:
-
         print("Error deleting cargo:", error)
         connection.rollback()
         return False
 
     finally:
-
         cursor.close()
         connection.close()
 
@@ -299,11 +304,7 @@ if __name__ == "__main__":
     connection = get_connection()
 
     if connection is not None and connection.is_connected():
-
         print("MySQL connected successfully!")
-
         connection.close()
-
     else:
-
         print("MySQL connection failed.")

@@ -9,6 +9,7 @@ from database import (
 )
 
 from models import Cargo
+from prediction import get_prediction, CARGO_PARAMETERS
 
 
 # =========================================================
@@ -29,14 +30,63 @@ def cargo_to_dict(cargo):
         "safe_temp": cargo.safe_temp,
         "max_temp_threshold": cargo.max_temp_threshold,
         "flight_delay_minutes": cargo.flight_delay_minutes,
+        "flight_duration_hours": cargo.flight_duration_hours,
         "viability_percentage": cargo.viability_percentage,
-        "risk_level": cargo.risk_level,
-        "flight_duration_hours": cargo.flight_duration_hours
+        "risk_level": cargo.risk_level
     }
 
 
 # =========================================================
-# HOME
+# VALIDATE PREDICTION INPUTS
+# =========================================================
+def validate_prediction_input(data):
+
+    required_fields = [
+        "cargo_type",
+        "current_temp",
+        "flight_duration_hours",
+        "flight_delay_minutes"
+    ]
+
+    for field in required_fields:
+        if field not in data:
+            return None, f"Missing required field: {field}"
+
+    cargo_type = str(data["cargo_type"]).strip()
+
+    if cargo_type not in CARGO_PARAMETERS:
+        return None, "Unknown cargo type."
+
+    try:
+        current_temp = float(data["current_temp"])
+        flight_duration_hours = float(data["flight_duration_hours"])
+        flight_delay_minutes = int(data["flight_delay_minutes"])
+    except (ValueError, TypeError):
+        return None, "Invalid numeric value provided."
+
+    if current_temp < -100 or current_temp > 100:
+        return None, "Current temperature is outside the accepted range."
+
+    if flight_duration_hours <= 0:
+        return None, "Flight duration must be greater than 0."
+
+    if flight_delay_minutes < 0:
+        return None, "Flight delay cannot be negative."
+
+    parameters = CARGO_PARAMETERS[cargo_type]
+
+    return {
+        "cargo_type": cargo_type,
+        "current_temp": current_temp,
+        "flight_duration_hours": flight_duration_hours,
+        "flight_delay_minutes": flight_delay_minutes,
+        "safe_temp": parameters["safe_temp"],
+        "max_temp_threshold": parameters["max_temp_threshold"]
+    }, None
+
+
+# =========================================================
+# HEALTH CHECK
 # =========================================================
 @app.route("/", methods=["GET"])
 def home():
@@ -48,6 +98,44 @@ def home():
 
 
 # =========================================================
+# PREDICT VIABILITY
+# =========================================================
+@app.route("/predict", methods=["POST"])
+def predict():
+
+    data = request.get_json(silent=True)
+
+    if data is None:
+        return jsonify({
+            "success": False,
+            "error": "Request must contain JSON data."
+        }), 400
+
+    validated, error = validate_prediction_input(data)
+
+    if error:
+        return jsonify({
+            "success": False,
+            "error": error
+        }), 400
+
+    result = get_prediction(
+        cargo_type=validated["cargo_type"],
+        current_temp=validated["current_temp"],
+        flight_duration_hours=validated["flight_duration_hours"],
+        flight_delay_minutes=validated["flight_delay_minutes"]
+    )
+
+    return jsonify({
+        "success": True,
+        "data": {
+            **validated,
+            **result
+        }
+    })
+
+
+# =========================================================
 # GET ALL CARGO
 # =========================================================
 @app.route("/cargo", methods=["GET"])
@@ -55,13 +143,7 @@ def get_cargo_list():
 
     cargo_list = get_all_cargo()
 
-    result = []
-
-    for cargo in cargo_list:
-
-        result.append(
-            cargo_to_dict(cargo)
-        )
+    result = [cargo_to_dict(cargo) for cargo in cargo_list]
 
     return jsonify({
         "success": True,
@@ -79,7 +161,6 @@ def get_single_cargo(cargo_id):
     cargo = get_cargo(cargo_id)
 
     if cargo is None:
-
         return jsonify({
             "success": False,
             "error": "Cargo ID not found."
@@ -92,7 +173,7 @@ def get_single_cargo(cargo_id):
 
 
 # =========================================================
-# ADD NEW CARGO
+# ADD NEW CARGO + CALCULATE PREDICTION
 # =========================================================
 @app.route("/cargo", methods=["POST"])
 def create_cargo():
@@ -100,149 +181,47 @@ def create_cargo():
     data = request.get_json(silent=True)
 
     if data is None:
-
         return jsonify({
             "success": False,
             "error": "Request must contain JSON data."
         }), 400
 
-    required_fields = [
-        "cargo_id",
-        "cargo_type",
-        "current_temp",
-        "safe_temp",
-        "max_temp_threshold",
-        "flight_delay_minutes",
-        "flight_duration_hours"
-    ]
+    validated, error = validate_prediction_input(data)
 
-    for field in required_fields:
+    if error:
+        return jsonify({
+            "success": False,
+            "error": error
+        }), 400
 
-        if field not in data:
-
-            return jsonify({
-                "success": False,
-                "error": f"Missing required field: {field}"
-            }), 400
-
-    cargo_id = str(
-        data["cargo_id"]
-    ).strip()
-
-    cargo_type = str(
-        data["cargo_type"]
-    ).strip()
+    cargo_id = str(data.get("cargo_id", "")).strip()
 
     if cargo_id == "":
-
         return jsonify({
             "success": False,
             "error": "Cargo ID cannot be empty."
         }), 400
 
-    if cargo_type == "":
-
-        return jsonify({
-            "success": False,
-            "error": "Cargo type cannot be empty."
-        }), 400
-
-    # -----------------------------------------------------
-    # NUMBER VALIDATION
-    # -----------------------------------------------------
-    try:
-
-        current_temp = float(
-            data["current_temp"]
-        )
-
-        safe_temp = float(
-            data["safe_temp"]
-        )
-
-        max_temp_threshold = float(
-            data["max_temp_threshold"]
-        )
-
-        flight_delay_minutes = int(
-            data["flight_delay_minutes"]
-        )
-
-        flight_duration_hours = float(
-            data["flight_duration_hours"]
-        )
-
-    except (ValueError, TypeError):
-
-        return jsonify({
-            "success": False,
-            "error": "Invalid numeric value provided."
-        }), 400
-
-    # -----------------------------------------------------
-    # TEMPERATURE VALIDATION
-    # -----------------------------------------------------
-    if current_temp < -100 or current_temp > 100:
-
-        return jsonify({
-            "success": False,
-            "error": "Current temperature is outside the accepted range."
-        }), 400
-
-    if safe_temp < -100 or safe_temp > 100:
-
-        return jsonify({
-            "success": False,
-            "error": "Safe temperature is outside the accepted range."
-        }), 400
-
-    if max_temp_threshold < -100 or max_temp_threshold > 100:
-
-        return jsonify({
-            "success": False,
-            "error": "Maximum temperature threshold is outside the accepted range."
-        }), 400
-
-    if max_temp_threshold < safe_temp:
-
-        return jsonify({
-            "success": False,
-            "error": "Maximum temperature threshold cannot be lower than safe temperature."
-        }), 400
-
-    # -----------------------------------------------------
-    # DELAY VALIDATION
-    # -----------------------------------------------------
-    if flight_delay_minutes < 0:
-
-        return jsonify({
-            "success": False,
-            "error": "Flight delay cannot be negative."
-        }), 400
-
-    # -----------------------------------------------------
-    # FLIGHT DURATION VALIDATION
-    # -----------------------------------------------------
-    if flight_duration_hours <= 0:
-
-        return jsonify({
-            "success": False,
-            "error": "Flight duration must be greater than 0."
-        }), 400
-
-    # -----------------------------------------------------
-    # DUPLICATE CHECK
-    # -----------------------------------------------------
     if get_cargo(cargo_id) is not None:
-
         return jsonify({
             "success": False,
             "error": "Cargo ID already exists."
         }), 409
 
-    # Initial values
-    viability_percentage = 100.0
-    risk_level = "Safe"
+    cargo_type = validated["cargo_type"]
+    current_temp = validated["current_temp"]
+    flight_duration_hours = validated["flight_duration_hours"]
+    flight_delay_minutes = validated["flight_delay_minutes"]
+    safe_temp = validated["safe_temp"]
+    max_temp_threshold = validated["max_temp_threshold"]
+
+    # Run the AI/viability prediction before saving.
+    prediction = get_prediction(
+        cargo_type=cargo_type,
+        current_temp=current_temp,
+        flight_duration_hours=flight_duration_hours,
+        flight_delay_minutes=flight_delay_minutes
+    )
 
     cargo = Cargo(
         cargo_id,
@@ -251,13 +230,12 @@ def create_cargo():
         safe_temp,
         max_temp_threshold,
         flight_delay_minutes,
-        viability_percentage,
-        risk_level,
+        prediction["arrhenius_viability"],
+        prediction["risk_level"],
         flight_duration_hours
     )
 
     if not add_cargo(cargo):
-
         return jsonify({
             "success": False,
             "error": "Failed to save cargo to database."
@@ -266,12 +244,15 @@ def create_cargo():
     return jsonify({
         "success": True,
         "message": "Cargo added successfully.",
-        "data": cargo_to_dict(cargo)
+        "data": {
+            **cargo_to_dict(cargo),
+            **prediction
+        }
     }), 201
 
 
 # =========================================================
-# UPDATE CARGO
+# UPDATE CARGO + RECALCULATE PREDICTION
 # =========================================================
 @app.route("/cargo/<cargo_id>", methods=["PUT"])
 def update_single_cargo(cargo_id):
@@ -279,7 +260,6 @@ def update_single_cargo(cargo_id):
     existing_cargo = get_cargo(cargo_id)
 
     if existing_cargo is None:
-
         return jsonify({
             "success": False,
             "error": "Cargo ID not found."
@@ -288,63 +268,72 @@ def update_single_cargo(cargo_id):
     data = request.get_json(silent=True)
 
     if data is None:
-
         return jsonify({
             "success": False,
             "error": "Request must contain JSON data."
         }), 400
 
     if "current_temp" not in data:
-
         return jsonify({
             "success": False,
             "error": "Missing required field: current_temp"
         }), 400
 
     if "flight_delay_minutes" not in data:
-
         return jsonify({
             "success": False,
             "error": "Missing required field: flight_delay_minutes"
         }), 400
 
+    if "flight_duration_hours" not in data:
+        return jsonify({
+            "success": False,
+            "error": "Missing required field: flight_duration_hours"
+        }), 400
+
     try:
-
-        current_temp = float(
-            data["current_temp"]
-        )
-
-        flight_delay_minutes = int(
-            data["flight_delay_minutes"]
-        )
-
+        current_temp = float(data["current_temp"])
+        flight_delay_minutes = int(data["flight_delay_minutes"])
+        flight_duration_hours = float(data["flight_duration_hours"])
     except (ValueError, TypeError):
-
         return jsonify({
             "success": False,
             "error": "Invalid update values."
         }), 400
 
     if current_temp < -100 or current_temp > 100:
-
         return jsonify({
             "success": False,
             "error": "Current temperature is outside the accepted range."
         }), 400
 
     if flight_delay_minutes < 0:
-
         return jsonify({
             "success": False,
             "error": "Flight delay cannot be negative."
         }), 400
 
+    if flight_duration_hours <= 0:
+        return jsonify({
+            "success": False,
+            "error": "Flight duration must be greater than 0."
+        }), 400
+
+    prediction = get_prediction(
+        cargo_type=existing_cargo.cargo_type,
+        current_temp=current_temp,
+        flight_duration_hours=flight_duration_hours,
+        flight_delay_minutes=flight_delay_minutes
+    )
+
     if not update_cargo(
         cargo_id,
         current_temp,
-        flight_delay_minutes
+        flight_delay_minutes,
+        prediction["arrhenius_viability"],
+        prediction["risk_level"],
+        flight_duration_hours
     ):
-
         return jsonify({
             "success": False,
             "error": "Failed to update cargo."
@@ -355,7 +344,10 @@ def update_single_cargo(cargo_id):
     return jsonify({
         "success": True,
         "message": "Cargo updated successfully.",
-        "data": cargo_to_dict(updated_cargo)
+        "data": {
+            **cargo_to_dict(updated_cargo),
+            **prediction
+        }
     })
 
 
@@ -368,14 +360,12 @@ def delete_single_cargo(cargo_id):
     existing_cargo = get_cargo(cargo_id)
 
     if existing_cargo is None:
-
         return jsonify({
             "success": False,
             "error": "Cargo ID not found."
         }), 404
 
     if not delete_cargo(cargo_id):
-
         return jsonify({
             "success": False,
             "error": "Failed to delete cargo."
