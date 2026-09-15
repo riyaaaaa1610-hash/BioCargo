@@ -18,12 +18,14 @@ with open("styles.css") as f:
 # ---------------- HERO ---------------- #
 st.markdown("""
 <div class="hero">
-<h1>🧬 Synthetic Biology Cargo Viability Tracker</h1>
-<p>Real-time monitoring of temperature-sensitive biological shipments during flight delays.</p>
+    <h1>🧬 Synthetic Biology Cargo Viability Tracker</h1>
+    <p>Real-time monitoring of temperature-sensitive biological shipments during flight delays.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- INPUT ---------------- #
+# ---------------- INPUT SECTION ---------------- #
+st.markdown("## Cargo Input")
+
 left, right = st.columns(2)
 
 with left:
@@ -43,23 +45,34 @@ with left:
 with right:
     current_temp = st.number_input(
         "Current Temperature (°C)",
-        value=5.0
+        value=5.0,
+        step=1.0
     )
 
     flight_delay_minutes = st.number_input(
         "Flight Delay (Minutes)",
-        value=120
+        min_value=0,
+        value=120,
+        step=10
     )
 
-# ---------------- BACKEND ---------------- #
+    flight_duration_hours = st.number_input(
+        "Flight Duration (Hours)",
+        min_value=0.5,
+        value=2.0,
+        step=0.5
+    )
+
+# ---------------- BACKEND PREDICTION ---------------- #
 try:
     result = get_prediction(
         cargo_type=cargo_type,
         current_temp=current_temp,
-        flight_delay_minutes=flight_delay_minutes
+        flight_delay_minutes=flight_delay_minutes,
+        flight_duration_hours=flight_duration_hours
     )
 
-    # Works with different backend key names
+    # Compatible with different backend key names
     viability = (
         result.get("viability_percentage")
         or result.get("viability")
@@ -78,14 +91,15 @@ except Exception as e:
     st.stop()
 
 # ---------------- STATUS CARDS ---------------- #
+st.markdown("---")
 st.markdown("## Live Cargo Status")
 
-c1, c2, c3 = st.columns(3)
+c1, c2, c3, c4 = st.columns(4)
 
 with c1:
     st.markdown(f"""
     <div class="card">
-        <div class="metric-title">BIOLOGICAL VIABILITY</div>
+        <div class="metric-title">VIABILITY</div>
         <div class="metric-value">{viability}%</div>
     </div>
     """, unsafe_allow_html=True)
@@ -93,12 +107,20 @@ with c1:
 with c2:
     st.markdown(f"""
     <div class="card">
-        <div class="metric-title">FLIGHT DELAY</div>
+        <div class="metric-title">DELAY</div>
         <div class="metric-value">{flight_delay_minutes} min</div>
     </div>
     """, unsafe_allow_html=True)
 
 with c3:
+    st.markdown(f"""
+    <div class="card">
+        <div class="metric-title">DURATION</div>
+        <div class="metric-value">{flight_duration_hours} hr</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with c4:
     badge = "safe"
 
     if str(risk).lower() == "warning":
@@ -113,7 +135,7 @@ with c3:
     </div>
     """, unsafe_allow_html=True)
 
-# ---------------- GAUGE ---------------- #
+# ---------------- GAUGE & COUNTDOWN ---------------- #
 st.markdown("---")
 
 left, right = st.columns([2, 1])
@@ -134,18 +156,18 @@ with left:
     st_echarts(option, height="320px")
 
 with right:
-    st.markdown("### Countdown")
+    st.markdown("### Estimated Safe Time")
 
     hours = max(0, (100 - int(viability)) // 10 + 1)
 
     st.markdown(f"""
     <div class="card" style="text-align:center;">
         <h1>{hours}:00:00</h1>
-        <p>Estimated Safe Time</p>
+        <p>Remaining Safe Window</p>
     </div>
     """, unsafe_allow_html=True)
 
-# ---------------- TEMPERATURE CHART ---------------- #
+# ---------------- TEMPERATURE TREND ---------------- #
 st.markdown("---")
 
 left, right = st.columns(2)
@@ -161,7 +183,8 @@ with left:
     fig.patch.set_facecolor("#0F2341")
     ax.tick_params(colors="white")
     ax.spines[:].set_color("white")
-    ax.set_ylabel("°C", color="white")
+    ax.set_ylabel("Temperature (°C)", color="white")
+    ax.set_xlabel("Time", color="white")
 
     st.pyplot(fig)
 
@@ -171,24 +194,29 @@ with right:
     st.markdown(f"""
     <div class="card">
 
-    **Cargo ID**
+    **Cargo ID:** {cargo_id}
 
-    {cargo_id}
+    **Cargo Type:** {cargo_type}
 
-    **Cargo Type**
+    **Current Temperature:** {current_temp}°C
 
-    {cargo_type}
+    **Flight Delay:** {flight_delay_minutes} minutes
 
-    **Current Temperature**
-
-    {current_temp}°C
-
-    **Flight Delay**
-
-    {flight_delay_minutes} minutes
+    **Flight Duration:** {flight_duration_hours} hours
 
     </div>
     """, unsafe_allow_html=True)
+
+# ---------------- OPERATIONAL STATUS ---------------- #
+st.markdown("---")
+st.markdown("### Operational Status")
+
+if str(risk).lower() == "safe":
+    st.success("🟢 Cargo is within safe operating conditions.")
+elif str(risk).lower() == "warning":
+    st.warning("🟡 Cargo requires close monitoring.")
+else:
+    st.error("🔴 Immediate intervention required.")
 
 # ---------------- FOOTER ---------------- #
 st.markdown("---")
