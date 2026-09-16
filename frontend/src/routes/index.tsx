@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { usePredict } from "@/hooks/use-predict";
 import {
@@ -81,14 +81,8 @@ const emptyForm = {
 };
 
 function Index() {
-  const [loggedIn,setLoggedIn]=useState(false);
-  const [user,setUser]=useState("");
-  const [pass,setPass]=useState("");
-  const [role,setRole]=useState("");
-  useEffect(()=>{if(sessionStorage.getItem('biocargo_auth')==='true'){setLoggedIn(True)}},[]);
-  const creds={admin:['biocargo123','Admin'],operator:['operator123','Airport Operator'],medical:['medical123','Medical Logistics Officer']};
-  const login=(e:React.FormEvent)=>{e.preventDefault(); const c=(creds as any)[user.toLowerCase()]; if(c&&c[0]===pass){sessionStorage.setItem('biocargo_auth','true'); setRole(c[1]); setLoggedIn(true);} };
-  if(!loggedIn){return (<div className='flex min-h-screen items-center justify-center bg-background'><div className='w-full max-w-md rounded-2xl bg-panel p-8 ring-1 ring-line'><h1 className='text-3xl font-semibold text-center text-zinc-100'>BioCargo</h1><p className='text-center text-muted-foreground mb-6'>Secure Cargo Access</p><form onSubmit={login} className='space-y-4'><Input value={user} onChange={(e)=>setUser(e.target.value)} placeholder='Username'/><Input type='password' value={pass} onChange={(e)=>setPass(e.target.value)} placeholder='Password'/><Button type='submit' className='w-full bg-frost text-ink'>Sign In</Button></form><div className='mt-6 text-xs text-muted-foreground space-y-1'><p>admin / biocargo123</p><p>operator / operator123</p><p>medical / medical123</p></div></div></div>);}
+  const navigate = useNavigate();
+  useEffect(()=>{ if(!sessionStorage.getItem('biocargo_user')) navigate({to:'/login'});},[navigate]);
   const [form, setForm] = useState(emptyForm);
   const [result, setResult] = useState<PredictResponse | null>(null);
   const predict = usePredict();
@@ -200,7 +194,7 @@ function Header() {
             </Badge>
           )}
           <div className="grid size-8 place-items-center rounded-full bg-frost/15 ring-1 ring-frost/30">
-            <span className="font-mono text-[10px] text-frost">OP</span>
+            <button onClick={()=>{sessionStorage.clear(); window.location.href="/login";}} className="text-[10px] text-frost">OUT</button>
           </div>
         </div>
       </div>
