@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState, useMemo } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { usePredict } from "@/hooks/use-predict";
 import {
@@ -81,8 +81,6 @@ const emptyForm = {
 };
 
 function Index() {
-  const navigate = useNavigate();
-  useEffect(()=>{ if(!sessionStorage.getItem('biocargo_user')) navigate({to:'/login'});},[navigate]);
   const [form, setForm] = useState(emptyForm);
   const [result, setResult] = useState<PredictResponse | null>(null);
   const predict = usePredict();
@@ -194,7 +192,7 @@ function Header() {
             </Badge>
           )}
           <div className="grid size-8 place-items-center rounded-full bg-frost/15 ring-1 ring-frost/30">
-            <button onClick={()=>{sessionStorage.clear(); window.location.href="/login";}} className="text-[10px] text-frost">OUT</button>
+            <span className="font-mono text-[10px] text-frost">OP</span>
           </div>
         </div>
       </div>
